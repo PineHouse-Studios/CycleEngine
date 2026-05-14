@@ -5,11 +5,14 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Core
 {
+    /// <summary>
+    /// Runtime entities
+    /// </summary>
     public class EntityManager
     {
         private readonly Dictionary<string, EntityBase> _entities = new Dictionary<string, EntityBase>();
         
-        public void Set(string key, EntityBase entity)
+        public void Register(string key, EntityBase entity)
         {
             _entities[key] = entity;
         }
@@ -27,11 +30,6 @@ namespace CycleEngine.Core
         public void Clear()
         {
             _entities.Clear();
-        }
-
-        public IEnumerable<EntityBase> GetAll()
-        {
-            return _entities.Values;
         }
     }
 }

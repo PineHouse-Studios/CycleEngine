@@ -4,21 +4,21 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Core
 {
-    public static class ServiceManager
+    public class ServiceManager
     {
-        private static readonly Dictionary<Type, object> Serv = new Dictionary<Type, object>();
-        
-        public static void Register<T>(T service) where T : class
+        // All services should be registered during initialization of the engine instance by bootstrapper
+        private readonly Dictionary<Type, object> _services;
+
+        public ServiceManager(Dictionary<Type, object> services)
         {
-            var type = typeof(T);
-            Serv[type] = service;
+            _services = services;
         }
         
-        public static T Get<T>() where T : class
+        public T Get<T>() where T : class
         {
             var type = typeof(T);
-            if (Serv.TryGetValue(type, out var service)) {
-                return (T)service;
+            if (_services.TryGetValue(type, out var instance)) {
+                return (T)instance;
             }
 
             throw new CycleServiceNotFoundException(nameof(T));

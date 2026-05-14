@@ -11,7 +11,7 @@ namespace CycleEngine.Commands
     {
         protected CommandBase(string raw)
         {
-            Parameter = ServiceManager.Get<CommandLexer>().Tokenize(raw);
+            
         }
         
         protected int LineNumber { get; set; }
