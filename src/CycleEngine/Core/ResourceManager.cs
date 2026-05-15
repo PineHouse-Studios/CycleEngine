@@ -5,14 +5,14 @@ using CycleEngine.Utils;
 namespace CycleEngine.Core
 {
     /// <summary>
-    /// Manage Resource Paths and Keys
+    /// Manage ResourceRef Paths and Keys
     /// </summary>
     public class ResourceManager
     {
-        private readonly Dictionary<Resource, Dictionary<string, string>> _resources =
-            new Dictionary<Resource, Dictionary<string, string>>();
+        private readonly Dictionary<ResourceType, Dictionary<string, string>> _resources =
+            new Dictionary<ResourceType, Dictionary<string, string>>();
         
-        public void RegisterPath(Resource type, string key, string absolutePath)
+        public void RegisterPath(ResourceType type, string key, string absolutePath)
         {
             _resources[type][key] = absolutePath;
         }

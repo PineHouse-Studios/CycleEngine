@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CycleEngine.Utils
 {
-    public enum Resource
+    public enum ResourceType
     {
         Audio,
         Background,
@@ -15,18 +15,18 @@ namespace CycleEngine.Utils
         Undefine
     }
 
-    public static class ResourceType
+    public static class ResourceRef
     {
-        public static readonly Dictionary<string, Resource> Resources = new Dictionary<string, Resource>()
+        public static readonly Dictionary<string, ResourceType> Types = new Dictionary<string, ResourceType>()
         {
-            { "audio", Resource.Audio },
-            { "background", Resource.Background },
-            { "image", Resource.Image },
-            { "music", Resource.Music },
-            { "video", Resource.Video },
-            { "engine", Resource.CycleEngineScripts },
-            { "dialog", Resource.CycleDialogScripts },
-            { "animation", Resource.Animations }
+            { "audio", ResourceType.Audio },
+            { "background", ResourceType.Background },
+            { "image", ResourceType.Image },
+            { "music", ResourceType.Music },
+            { "video", ResourceType.Video },
+            { "engine", ResourceType.CycleEngineScripts },
+            { "dialog", ResourceType.CycleDialogScripts },
+            { "animation", ResourceType.Animations }
         };
     }
 }

@@ -77,16 +77,16 @@ namespace CycleEngine.Core
                 
                 foreach (var (key, value) in categoryTable)
                 {
-                    if (!ResourceType.Resources.TryGetValue(categoryName, out var resourceType))
+                    if (!ResourceRef.Types.TryGetValue(categoryName, out var resourceType))
                     {
                         throw new InvalidOperationException(
                             $"Unknown resource category '{categoryName}' in {indexPath}. " +
-                            $"Valid categories: {string.Join(", ", ResourceType.Resources.Keys)}");
+                            $"Valid categories: {string.Join(", ", ResourceRef.Types.Keys)}");
                     }
                     
                     if (value is string path)
                     {
-                        _resourceManager.RegisterPath(ResourceType.Resources[categoryName], key, path);
+                        _resourceManager.RegisterPath(ResourceRef.Types[categoryName], key, path);
                     }
                 }
             }

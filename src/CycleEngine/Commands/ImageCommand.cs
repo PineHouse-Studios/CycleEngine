@@ -16,7 +16,7 @@ namespace CycleEngine.Commands
             
             for (int i = 1; i < Parameter.Count; i++)
             {
-                // to be impl
+                // 
             }
         }
 
