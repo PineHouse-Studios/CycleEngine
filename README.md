@@ -1,7 +1,9 @@
 # Cycle Engine
-This is an 2d storytelling (VNG, or Visual Novel Game) engine developed in C#. This engine manages resource and game logics using CES (Cycle Engine Script).
+> A scriptable 2D narrative engine for visual novels and dialogue-driven games.
 
-You CANNOT build a game using this engine alone. You need to implement interfaces defined in the src/CycleEngine/Interfaces directory into a game engine (like Unity) to use the Cycle Engine.
+Cycle Engine is a C# storytelling engine powered by **CES (Cycle Engine Script)** — a custom scripting language designed for writing cinematic scenes, branching dialogues, and character animations in plain text.
+
+Cycle is engine-agnostic: it handles resource management, story logic, and animation state, while leaving rendering and platform-specific details to a host game engine. To run a Cycle project in Unity, Godot, or any other framework, implement the backend interfaces defined under `src/CycleEngine/Interfaces` — examples are provided in the `examples/` directory.
 
 ## Concepts of this engine
 
@@ -15,8 +17,6 @@ You CANNOT build a game using this engine alone. You need to implement interface
 
 ### Command System
 
-### Project Loading Pipeline
-
-The entry point 
+### Bootstrapper
 
 ### Script Executor
