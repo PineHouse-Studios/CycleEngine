@@ -39,7 +39,7 @@ namespace CycleEngine.Utils
 
     public static class EaseFunctions
     {
-        private static readonly Dictionary<string, Ease> Eases = new Dictionary<string, Ease>
+        public static readonly Dictionary<string, Ease> Eases = new Dictionary<string, Ease>
         {
             { "isine", Ease.InSine },
             { "osine", Ease.OutSine },
@@ -72,11 +72,6 @@ namespace CycleEngine.Utils
             { "obounce", Ease.OutBounce },
             { "iobounce", Ease.InOutBounce }
         };
-
-        public static Ease Query(string key)
-        {
-            return Eases.GetValueOrDefault(key, Ease.Undefine);
-        }
     }
     
     

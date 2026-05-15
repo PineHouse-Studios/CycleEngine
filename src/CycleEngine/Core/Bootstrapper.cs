@@ -1,12 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using CycleEngine.Definitions;
 using CycleEngine.Entities;
+using CycleEngine.Interfaces;
+using CycleEngine.Utils;
+using Tomlyn;
+using Tomlyn.Model;
 
 namespace CycleEngine.Core
 {
     public class Bootstrapper
     {
         private readonly Dictionary<Type, object> _services = new Dictionary<Type, object>();
+        private readonly ResourceManager _resourceManager = new ResourceManager();
         
         private sealed class CycleEngineImpl : CycleEngine
         {
@@ -29,14 +36,60 @@ namespace CycleEngine.Core
             _services[type] = instance;
             return this;
         }
-
-        public CycleEngine Build(string projectPath)
+        
+        private T GetService<T>() where T : class
         {
-            ResourceManager resourceManager = new ResourceManager();
+            var type = typeof(T);
+            if (_services.TryGetValue(type, out var instance)) {
+                return (T)instance;
+            }
+
+            throw new CycleServiceNotFoundException(nameof(T));
+        }
+
+        public CycleEngine Build()
+        {
+            var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<ICycleProjectStorage>().ReadText("/cycleproject.toml"));
+
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Audio);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Image);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Music);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Script);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Video);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Background);
+            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Save);
             
-            // TODO implement load project
-            
-            return new CycleEngineImpl(new ServiceManager(_services), resourceManager);
+            return new CycleEngineImpl(new ServiceManager(_services), _resourceManager);
+        }
+
+        private void DeserializeResourceIndex(string indexPath)
+        {
+            var doc = TomlSerializer.Deserialize<TomlTable>(GetService<ICycleProjectStorage>().ReadText(indexPath))
+                      ?? throw new InvalidOperationException("Failed to parse TOML content");
+        
+            foreach (var (categoryName, categoryValue) in doc)
+            {
+                if (!(categoryValue is TomlTable))
+                {
+                    continue;
+                }
+                TomlTable categoryTable = (TomlTable)categoryValue;
+                
+                foreach (var (key, value) in categoryTable)
+                {
+                    if (!ResourceType.Resources.TryGetValue(categoryName, out var resourceType))
+                    {
+                        throw new InvalidOperationException(
+                            $"Unknown resource category '{categoryName}' in {indexPath}. " +
+                            $"Valid categories: {string.Join(", ", ResourceType.Resources.Keys)}");
+                    }
+                    
+                    if (value is string path)
+                    {
+                        _resourceManager.RegisterPath(ResourceType.Resources[categoryName], key, path);
+                    }
+                }
+            }
         }
     }
 }

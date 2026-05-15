@@ -14,9 +14,9 @@ namespace CycleEngine.Interfaces
     /// (backed by the local file system), but other implementations are possible
     /// (e.g. in-memory storage for unit tests, ZIP archive, etc.).
     /// 
-    /// Path conventions: paths are relative to the project root, use forward
+    /// Path conventions: paths are relative to the project root, use forward, started with slashes
     /// slashes '/' as separators, and are case-sensitive.
-    /// Examples: "cycleproject.toml", "scripts/engine/prologue_00.ces", "images/paul.png"
+    /// Examples: "/cycleproject.toml", "/scripts/engine/prologue_00.ces", "/images/paul.png"
     /// </summary>
     public interface ICycleProjectStorage
     {
@@ -37,12 +37,25 @@ namespace CycleEngine.Interfaces
         Task<string> ReadTextAsync(string relativePath, CancellationToken ct = default);
         
         /// <summary>
+        /// Reads the entire contents of a text file as UTF-8.
+        /// </summary>
+        string ReadText(string relativePath);
+        
+        /// <summary>
         /// Reads the entire contents of a binary file.
         /// Suitable for small files (configs, text). For large files,
         /// prefer <see cref="OpenReadAsync"/> for streaming.
         /// </summary>
         /// <exception cref="CycleResourceNotFoundException">The file does not exist.</exception>
         Task<byte[]> ReadBytesAsync(string relativePath, CancellationToken ct = default);
+        
+        /// <summary>
+        /// Reads the entire contents of a binary file.
+        /// Suitable for small files (configs, text). For large files,
+        /// prefer <see cref="OpenReadAsync"/> for streaming.
+        /// </summary>
+        /// <exception cref="CycleResourceNotFoundException">The file does not exist.</exception>
+        byte[] ReadBytes(string relativePath, CancellationToken ct = default);
         
         /// <summary>
         /// Opens a file as a stream. Suitable for loading large files such as

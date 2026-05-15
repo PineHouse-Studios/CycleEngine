@@ -9,21 +9,12 @@ namespace CycleEngine.Core
     /// </summary>
     public class ResourceManager
     {
-        private readonly Dictionary<string, string> _resources = new Dictionary<string, string>();
+        private readonly Dictionary<Resource, Dictionary<string, string>> _resources =
+            new Dictionary<Resource, Dictionary<string, string>>();
         
-        public void RegisterPath(string key, string absolutePath)
+        public void RegisterPath(Resource type, string key, string absolutePath)
         {
-            _resources[key] = absolutePath;
-        }
-        
-        public string GetPath(string key)
-        {
-            if (_resources.TryGetValue(key, out var path))
-            {
-                return path;
-            }
-
-            throw new CycleEntityNotFoundException(key);
+            _resources[type][key] = absolutePath;
         }
     }
 }
