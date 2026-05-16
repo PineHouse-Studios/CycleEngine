@@ -1,4 +1,5 @@
 using CycleEngine.Core;
+using CycleEngine.Definitions;
 
 namespace CycleEngine
 {
@@ -12,12 +13,14 @@ namespace CycleEngine
         public ServiceManager Services { get; }
         public EntityManager Entities { get; }
         public ResourceManager Resources { get; }
+        public GameConfig Config { get; }
 
         protected CycleEngine(ServiceManager services, ResourceManager resources)
         {
             Services = services;
-            Resources = resources;
             Entities = new EntityManager();
+            Resources = resources;
+            Config = new GameConfig();
         }
 
         public void NewGame()

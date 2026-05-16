@@ -1,4 +1,5 @@
 using CycleEngine.Interpreter;
+using CycleEngine.Utils;
 
 namespace CycleEngine.Definitions.Deserialize
 {
@@ -13,6 +14,7 @@ namespace CycleEngine.Definitions.Deserialize
         
         public AnimatedVelocityValue<double> X { get; set; } = new AnimatedVelocityValue<double>();
         public AnimatedVelocityValue<double> Y { get; set; } = new AnimatedVelocityValue<double>();
+        public AnimatedVelocityValue<double> Rotation { get; set; } = new AnimatedVelocityValue<double>();
         public AnimatedValue<double> Alpha { get; set; } = new AnimatedValue<double>() { Value = 100 };
         public AnimatedValue<double> Zoom { get; set; } = new AnimatedValue<double>() { Value = 100 };
 

@@ -22,7 +22,9 @@ namespace CycleEngine.Interfaces
     {
         /// <summary>
         /// Absolute path to the project root. Some backends need this to access
-        /// files directly (e.g. Unity's UnityWebRequest loading images via file:// URIs).
+        /// files directly (e.g. Unity's UnityWebRequest loading images via file:// URIs). <br/>
+        /// The engine will read the cycleproject.toml file in this path
+        /// to load the project.
         /// </summary>
         string RootPath { get; }
         

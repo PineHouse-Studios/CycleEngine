@@ -1,5 +1,6 @@
 using CycleEngine.Definitions.Deserialize;
 using CycleEngine.Interpreter;
+using CycleEngine.Utils;
 
 namespace CycleEngine.Entities
 {
@@ -14,6 +15,7 @@ namespace CycleEngine.Entities
         
         public AnimatedVelocityValue<double> X { get; set; }
         public AnimatedVelocityValue<double> Y { get; set; }
+        public AnimatedVelocityValue<double> Rotation { get; set; }
         public AnimatedValue<double> Alpha { get; set; }
         public AnimatedValue<double> Zoom { get; set; }
 
@@ -29,6 +31,7 @@ namespace CycleEngine.Entities
             Dur = deserialized.Dur;
             X = deserialized.X;
             Y = deserialized.Y;
+            Rotation = deserialized.Rotation;
             Alpha = deserialized.Alpha;
             Zoom = deserialized.Zoom;
             In = deserialized.In;

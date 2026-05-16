@@ -1,9 +1,9 @@
-namespace CycleEngine.Interpreter
+namespace CycleEngine.Utils
 {
     public class AnimatedValue<T>
     {
         public T Value { get; set; } = default!;
-        public double Dur { get; set; }
+        public double Duration { get; set; }
         public string Ease { get; set; } = "linear";
     }
 

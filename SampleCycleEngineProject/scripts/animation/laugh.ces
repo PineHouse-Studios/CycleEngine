@@ -1,4 +1,4 @@
-[begin animation.image]
+[begin animation:image]
 
 @repeat 3
 @image update $this$ y:image.$this$.y+10 dur:200 ease:oquart
@@ -6,4 +6,4 @@
 @image update $this$ y:image.$this$.y-10 dur:200 ease:oquart
 @endrepeat
 
-[end animation.image]
+[end animation:image]

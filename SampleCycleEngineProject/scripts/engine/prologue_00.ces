@@ -45,7 +45,6 @@ title = "Prologue"
 @endchoice
 
 [0000:1:9]
-@loadscene [0000:2]
 
 [end 0000:1]
 
