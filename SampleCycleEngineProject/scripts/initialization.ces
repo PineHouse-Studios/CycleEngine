@@ -1,0 +1,31 @@
+[begin script]
+
+# 存档加载逻辑: initialization.ces:begin.script -> 写入存档内容 -> 执行存档指定事件
+# 游戏开始逻辑: initialization.ces:begin.script -> initialization.ces:begin.script.default
+
+@define var global route.bob.complete = false @enddefine
+@define var local route.bob.count = 0 @enddefine
+
+@define function ChptWhiteStart(video, background, backgroundend):
+@ui lock
+@image create white content:white in:fade dur:1000 show
+@wait until:image.white.dur.end
+@image update white out:fade dur:500 hide
+@bg show $background$
+@bg update $background$ zoom:150 x:-50 vX:2 dur:2000
+@video create $video$ alpha:50 prog:0 show play end:pause
+@wait until:bg.$background$.dur.end
+@image update white in:fade dur:1000 show
+@wait until:image.white.dur.end
+@video update $video$ hide
+@bg show $backgroundend$ zoom:150 x:-50
+@wait 2000
+@ui unlock
+@image update white out:shutters dur:1000
+@enddefine
+
+[begin default]
+@loadscript 0000
+[end default]
+
+[end script]

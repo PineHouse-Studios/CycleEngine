@@ -1,0 +1,46 @@
+content = ""
+layer = 0
+show = false
+
+ease = "fade"
+dur = 0
+
+[x]
+value = 0
+dur = 0
+ease = "linear"
+
+[x.velocity]
+value = 0
+dur = 0
+ease = "linear"
+
+[y]
+value = 0
+dur = 0
+ease = "linear"
+
+[y.velocity] 
+value = 0
+dur = 0
+ease = "linear"
+
+[alpha]
+value = 0
+dur = 0
+ease = "linear"
+
+[zoom]
+value = 100
+dur = 0
+ease = "linear"
+
+[in]
+value = "fade"
+dur = 0
+ease = "linear"
+
+[out]
+value = "fade"
+dur = 0
+ease = "linear"

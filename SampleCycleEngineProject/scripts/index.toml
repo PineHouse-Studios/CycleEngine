@@ -1,0 +1,10 @@
+[engine]
+init = "/scripts/initialization.ces"
+0000 = "/scripts/engine/prologue_00.ces"
+1001 = "/scripts/engine/common_route_01.ces"
+
+[dialog]
+0000 = "/scripts/dialog/prologue_00_$sys.lang$.cds"
+
+[animation]
+laugh = "/scripts/animation/laugh.ces"

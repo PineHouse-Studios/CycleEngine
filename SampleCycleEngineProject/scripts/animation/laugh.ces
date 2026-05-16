@@ -1,0 +1,9 @@
+[begin animation.image]
+
+@repeat 3
+@image update $this$ y:image.$this$.y+10 dur:200 ease:oquart
+@wait until:image.$this$.dur.end
+@image update $this$ y:image.$this$.y-10 dur:200 ease:oquart
+@endrepeat
+
+[end animation.image]
