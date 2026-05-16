@@ -51,13 +51,13 @@ namespace CycleEngine.Core
         {
             var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<ICycleProjectStorage>().ReadText("/cycleproject.toml"));
 
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Audio);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Image);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Music);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Script);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Video);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Background);
-            DeserializeResourceIndex(projectConfig.AssetsFolderPath.Save);
+            DeserializeResourceIndex(projectConfig.Assets.Audio);
+            DeserializeResourceIndex(projectConfig.Assets.Image);
+            DeserializeResourceIndex(projectConfig.Assets.Music);
+            DeserializeResourceIndex(projectConfig.Assets.Script);
+            DeserializeResourceIndex(projectConfig.Assets.Video);
+            DeserializeResourceIndex(projectConfig.Assets.Background);
+            DeserializeResourceIndex(projectConfig.Assets.Save);
             
             return new CycleEngineImpl(new ServiceManager(_services), _resourceManager);
         }

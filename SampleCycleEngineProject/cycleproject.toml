@@ -1,4 +1,4 @@
-[Assets] # 会自动读取指定路径的index.toml
+[assets] # 会自动读取指定路径的index.toml
 audio = "/audios"
 image = "/images"
 music = "/musics"
