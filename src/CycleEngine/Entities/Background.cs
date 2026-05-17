@@ -1,6 +1,6 @@
 namespace CycleEngine.Entities
 {
-    public class Background : EntityBase
+    public class Background : Entity
     {
         
     }

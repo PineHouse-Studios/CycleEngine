@@ -7,11 +7,11 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public abstract class CommandBase : ICommand
+    public abstract class Command : ICommand
     {
-        protected CommandBase(string raw)
+        public Command(List<Token> parameters)
         {
-            
+            Parameter = parameters;
         }
         
         protected int LineNumber { get; set; }

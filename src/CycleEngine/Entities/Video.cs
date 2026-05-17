@@ -1,6 +1,6 @@
 namespace CycleEngine.Entities
 {
-    public class Video : EntityBase
+    public class Video : Entity
     {
         
     }

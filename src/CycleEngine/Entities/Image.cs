@@ -4,7 +4,7 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Entities
 {
-    public class Image : EntityBase
+    public class Image : Entity
     {
         public string Content { get; set; }
         public int Layer { get; set; }

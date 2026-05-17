@@ -7,9 +7,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class ImageCommand : CommandBase
+    public class ImageCommand : Command
     {
-        public ImageCommand(string raw) : base(raw)
+        public ImageCommand(List<Token> parameters) : base(parameters)
         {
             Operation = Parameter[1].Value;
             EntityKey = Parameter[2].Value;

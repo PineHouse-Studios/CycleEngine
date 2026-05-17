@@ -1,6 +1,6 @@
 namespace CycleEngine.Entities
 {
-    public class Audio : EntityBase
+    public class Audio : Entity
     {
         
     }

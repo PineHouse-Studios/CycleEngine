@@ -22,6 +22,17 @@ namespace CycleEngine.Utils
     }
     
     /// <summary>
+    /// The engine cannot execute or understand this command.
+    /// This happens when command was failed to execute, or
+    /// the command do not exist.
+    /// </summary>
+    public class CycleCommandException : CycleEngineException
+    {
+        public CycleCommandException(string details) : base(details)
+        { }
+    }
+
+    /// <summary>
     /// The engine cannot found the resource that it were asked to.
     /// </summary>
     public class CycleResourceNotFoundException : CycleEngineException

@@ -10,14 +10,14 @@ namespace CycleEngine.Core
     /// </summary>
     public class EntityManager
     {
-        private readonly Dictionary<string, EntityBase> _entities = new Dictionary<string, EntityBase>();
+        private readonly Dictionary<string, Entity> _entities = new Dictionary<string, Entity>();
         
-        public void Register(string key, EntityBase entity)
+        public void Register(string key, Entity entity)
         {
             _entities[key] = entity;
         }
         
-        public EntityBase Get(string key)
+        public Entity Get(string key)
         {
             if (_entities.TryGetValue(key, out var entity))
             {
