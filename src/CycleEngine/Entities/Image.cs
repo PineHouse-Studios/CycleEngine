@@ -1,4 +1,4 @@
-using CycleEngine.Definitions.Deserialize;
+using CycleEngine.Definitions.Manifest;
 using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 

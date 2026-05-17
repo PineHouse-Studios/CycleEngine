@@ -1,4 +1,4 @@
-namespace CycleEngine.Definitions.Deserialize
+namespace CycleEngine.Definitions.Manifest
 {
     public class MusicDeserialize
     {

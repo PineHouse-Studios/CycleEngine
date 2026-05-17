@@ -1,6 +1,6 @@
 namespace CycleEngine.Definitions
 {
-    public class EngineScriptBlock
+    public interface ICycleAsset
     {
         
     }

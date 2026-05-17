@@ -1,7 +1,7 @@
 using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 
-namespace CycleEngine.Definitions.Deserialize
+namespace CycleEngine.Definitions.Manifest
 {
     public class ImageDeserialize
     {

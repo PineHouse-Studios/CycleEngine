@@ -9,8 +9,9 @@ namespace CycleEngine.Utils
         Image,
         Music,
         Video,
-        CycleEngineScripts,
-        CycleDialogScripts,
+        Config,
+        CycleEngineScript,
+        CycleDialogScript,
         Animations,
         Undefine
     }
@@ -24,8 +25,9 @@ namespace CycleEngine.Utils
             { "image", ResourceType.Image },
             { "music", ResourceType.Music },
             { "video", ResourceType.Video },
-            { "engine", ResourceType.CycleEngineScripts },
-            { "dialog", ResourceType.CycleDialogScripts },
+            { "config", ResourceType.Config},
+            { "engine", ResourceType.CycleEngineScript },
+            { "dialog", ResourceType.CycleDialogScript },
             { "animation", ResourceType.Animations }
         };
     }

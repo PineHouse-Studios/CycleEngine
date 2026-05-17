@@ -12,7 +12,7 @@ namespace CycleEngine.Core
 {
     public class Bootstrapper
     {
-        private readonly Dictionary<Type, object> _services = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
         private readonly ResourceManager _resourceManager = new ResourceManager();
         
         private sealed class CycleEngineImpl : CycleEngine
@@ -30,14 +30,14 @@ namespace CycleEngine.Core
         /// </summary>
         /// <typeparam name="T">Interface of the service</typeparam>
         /// <param name="instance">Instance of the service</param>
-        public Bootstrapper RegisterService<T>(T instance) where T : class
+        public Bootstrapper RegisterService<T>(T instance) where T : IService
         {
             var type = typeof(T);
             _services[type] = instance;
             return this;
         }
         
-        private T GetService<T>() where T : class
+        private T GetService<T>() where T : IService
         {
             var type = typeof(T);
             if (_services.TryGetValue(type, out var instance)) {
