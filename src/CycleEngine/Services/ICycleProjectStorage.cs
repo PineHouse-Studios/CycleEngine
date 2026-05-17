@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CycleEngine.Utils;
 
-namespace CycleEngine.Interfaces
+namespace CycleEngine.Services
 {
     /// <summary>
     /// Storage abstraction for a Cycle project.

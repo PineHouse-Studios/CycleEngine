@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using CycleEngine.Definitions;
 using CycleEngine.Entities;
-using CycleEngine.Interfaces;
+using CycleEngine.Services;
 using CycleEngine.Utils;
 using Tomlyn;
 using Tomlyn.Model;

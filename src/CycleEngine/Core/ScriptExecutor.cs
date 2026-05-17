@@ -1,6 +1,6 @@
 using CycleEngine.Definitions;
-using CycleEngine.Interfaces;
 using CycleEngine.Interpreter;
+using CycleEngine.Services;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Core

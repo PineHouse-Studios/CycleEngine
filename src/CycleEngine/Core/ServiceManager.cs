@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CycleEngine.Interfaces;
+using CycleEngine.Services;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Core

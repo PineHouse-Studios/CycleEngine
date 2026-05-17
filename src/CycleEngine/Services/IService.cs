@@ -1,4 +1,4 @@
-namespace CycleEngine.Interfaces
+namespace CycleEngine.Services
 {
     public interface IService
     {
