@@ -50,7 +50,7 @@ namespace CycleEngine.Core
         public CycleEngine Build()
         {
             var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<ICycleProjectStorage>().ReadText("/cycleproject.toml"));
-
+            if (projectConfig is null) throw new CycleResourceNotFoundException("cycleproject.toml");
             DeserializeResourceIndex(projectConfig.Assets.Audio);
             DeserializeResourceIndex(projectConfig.Assets.Image);
             DeserializeResourceIndex(projectConfig.Assets.Music);

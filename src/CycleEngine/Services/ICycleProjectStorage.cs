@@ -36,35 +36,47 @@ namespace CycleEngine.Services
         /// <summary>
         /// Reads the entire contents of a text file as UTF-8.
         /// </summary>
-        Task<string> ReadTextAsync(string relativePath, CancellationToken ct = default);
+        /// <returns>
+        /// null if file not found.
+        /// </returns>
+        Task<string>? ReadTextAsync(string relativePath, CancellationToken ct = default);
         
         /// <summary>
         /// Reads the entire contents of a text file as UTF-8.
         /// </summary>
-        string ReadText(string relativePath);
+        /// <returns>
+        /// null if file not found.
+        /// </returns>
+        string? ReadText(string relativePath);
         
         /// <summary>
         /// Reads the entire contents of a binary file.
         /// Suitable for small files (configs, text). For large files,
         /// prefer <see cref="OpenReadAsync"/> for streaming.
         /// </summary>
-        /// <exception cref="CycleResourceNotFoundException">The file does not exist.</exception>
-        Task<byte[]> ReadBytesAsync(string relativePath, CancellationToken ct = default);
+        /// <returns>
+        /// null if file not found.
+        /// </returns>
+        Task<byte[]>? ReadBytesAsync(string relativePath, CancellationToken ct = default);
         
         /// <summary>
         /// Reads the entire contents of a binary file.
         /// Suitable for small files (configs, text). For large files,
         /// prefer <see cref="OpenReadAsync"/> for streaming.
         /// </summary>
-        /// <exception cref="CycleResourceNotFoundException">The file does not exist.</exception>
-        byte[] ReadBytes(string relativePath, CancellationToken ct = default);
+        /// <returns>
+        /// null if file not found.
+        /// </returns>
+        byte[]? ReadBytes(string relativePath, CancellationToken ct = default);
         
         /// <summary>
         /// Opens a file as a stream. Suitable for loading large files such as
         /// images and audio. The caller is responsible for disposing the stream.
         /// </summary>
-        /// <exception cref="CycleResourceNotFoundException">The file does not exist.</exception>
-        Task<Stream> OpenReadAsync(string relativePath, CancellationToken ct = default);
+        /// <returns>
+        /// null if file not found.
+        /// </returns>
+        Task<Stream>? OpenReadAsync(string relativePath, CancellationToken ct = default);
         
         /// <summary>
         /// Writes a text file as UTF-8. Parent directories are created as needed.
@@ -93,8 +105,10 @@ namespace CycleEngine.Services
         /// <param name="recursive">Whether to recurse into subdirectories.</param>
         /// <returns>
         /// Relative paths of matching files (relative to the project root).
+        /// Empty if no files found.
+        /// null if directory not found.
         /// </returns>
-        IEnumerable<string> ListFiles(
+        IEnumerable<string>? ListFiles(
             string relativeDirectory = "",
             string? searchPattern = null,
             bool recursive = false);

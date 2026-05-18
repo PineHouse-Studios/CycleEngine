@@ -9,4 +9,8 @@
       <PackageReference Include="Tomlyn" Version="2.3.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Animaton\" />
+    </ItemGroup>
+
 </Project>

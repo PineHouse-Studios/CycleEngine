@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CycleEngine.Entities;
 using CycleEngine.Utils;
@@ -17,21 +18,13 @@ namespace CycleEngine.Core
             _resources[type][key] = absolutePath;
         }
 
-        public string GetPath(ResourceType type, string key)
-        {
-            TryGetPath(type, key, out var path);
-            return path;
-        }
-
-        private bool TryGetPath(ResourceType type, string key, out string path)
+        public string? GetPath(ResourceType type, string key)
         {
             if (_resources.TryGetValue(type, out var entries) && entries.TryGetValue(key, out var foundPath))
             {
-                path = foundPath;
-                return true;
+                return foundPath;
             }
-
-            throw new CycleResourceNotFoundException($"Resource not found. type: {type.ToString()}, key: {key}");
+            return null;
         }
     }
 }

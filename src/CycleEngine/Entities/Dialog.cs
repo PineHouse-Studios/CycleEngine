@@ -1,8 +1,11 @@
 using CycleEngine.Entities;
 
-namespace CycleEngine.Definitions
+namespace CycleEngine.Entities
 {
-    public class Dialog
+    /// <summary>
+    /// Dialog entity is a singleton instance in a cycle engine instance
+    /// </summary>
+    public class Dialog : Entity
     {
         public string? Title { set; get; }
         public string? Text { set; get; }

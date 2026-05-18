@@ -1,5 +1,6 @@
 using CycleEngine.Core;
 using CycleEngine.Definitions;
+using CycleEngine.Utils;
 
 namespace CycleEngine
 {
@@ -14,6 +15,8 @@ namespace CycleEngine
         public EntityManager Entities { get; }
         public ResourceManager Resources { get; }
         public GameConfig Config { get; }
+        public EngineTime Time { get; }
+        private ScriptExecutor _executor;
 
         protected CycleEngine(ServiceManager services, ResourceManager resources)
         {
@@ -21,11 +24,14 @@ namespace CycleEngine
             Entities = new EntityManager();
             Resources = resources;
             Config = new GameConfig();
+            Time = new EngineTime();
+
+            _executor = new ScriptExecutor(this);
         }
 
         public void NewGame()
         {
-            
+            _executor.LoadScript("init");
         }
 
         public void SaveCurrentGame()
@@ -41,6 +47,15 @@ namespace CycleEngine
         public void LoadGame()
         {
             
+        }
+
+        /// <summary>
+        /// Advances the engine by the given delta time in milliseconds.
+        /// Called once per frame by the host.
+        /// </summary>
+        public void Update(double deltaMs)
+        {
+            Time.Advance(deltaMs);
         }
         
     }
