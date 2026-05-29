@@ -1,6 +1,6 @@
 namespace CycleEngine.Utils
 {
-    public enum Locale
+    public enum LocaleType
     {
         Zh,
         Jp,

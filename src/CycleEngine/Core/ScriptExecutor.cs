@@ -20,7 +20,7 @@ namespace CycleEngine.Core
             string? scriptPath = _engine.Resources.GetPath(ResourceType.CycleEngineScript, key);
             if (scriptPath is null) throw new CycleResourceNotFoundException($"{key} missing in script index file");
             
-            string? scriptRaw = _engine.Services.Get<ICycleProjectStorage>().ReadText(scriptPath);
+            string? scriptRaw = _engine.Services.Get<IStorageBackend>().ReadText(scriptPath);
             if (scriptRaw is null) throw new CycleResourceNotFoundException($"key -> {key}, path -> {scriptPath}");
             
             _currentScript = CycleEngineScriptParser.Parse(scriptRaw);

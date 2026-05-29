@@ -49,7 +49,7 @@ namespace CycleEngine.Core
 
         public CycleEngine Build()
         {
-            var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<ICycleProjectStorage>().ReadText("/cycleproject.toml"));
+            var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<IStorageBackend>().ReadText("/cycleproject.toml"));
             if (projectConfig is null) throw new CycleResourceNotFoundException("cycleproject.toml");
             DeserializeResourceIndex(projectConfig.Assets.Audio);
             DeserializeResourceIndex(projectConfig.Assets.Image);
@@ -64,8 +64,7 @@ namespace CycleEngine.Core
 
         private void DeserializeResourceIndex(string indexPath)
         {
-            var doc = TomlSerializer.Deserialize<TomlTable>(GetService<ICycleProjectStorage>().ReadText(indexPath))
-                      ?? throw new InvalidOperationException("Failed to parse TOML content");
+            var doc = TomlSerializer.Deserialize<TomlTable>(GetService<IStorageBackend>().ReadText(indexPath));
         
             foreach (var (categoryName, categoryValue) in doc)
             {
@@ -77,16 +76,13 @@ namespace CycleEngine.Core
                 
                 foreach (var (key, value) in categoryTable)
                 {
-                    if (!ResourceRef.Types.TryGetValue(categoryName, out var resourceType))
-                    {
-                        throw new InvalidOperationException(
-                            $"Unknown resource category '{categoryName}' in {indexPath}. " +
-                            $"Valid categories: {string.Join(", ", ResourceRef.Types.Keys)}");
-                    }
+                    ResourceType resourceType = ResourceRef.GetType(categoryName);
+                    if (resourceType == ResourceType.Undefine)
+                        throw new CycleAttributeValueTypeMismatchException("Resource Type", categoryName);
                     
                     if (value is string path)
                     {
-                        _resourceManager.RegisterPath(ResourceRef.Types[categoryName], key, path);
+                        _resourceManager.RegisterPath(resourceType, key, path);
                     }
                 }
             }

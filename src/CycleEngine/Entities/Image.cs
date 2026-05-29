@@ -1,41 +1,30 @@
+using System;
+using CycleEngine.Definitions;
 using CycleEngine.Definitions.Manifest;
 using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Entities
 {
-    public class Image : Entity
+    public class Image : AnimatableEntity
     {
         public string Content { get; set; }
         public int Layer { get; set; }
-        public bool Show { get; set; }
         
-        public string Ease { get; set; }
+        public EaseType Ease { get; set; }
         public double Dur { get; set; }
-        
-        public AnimatedVelocityValue<double> X { get; set; }
-        public AnimatedVelocityValue<double> Y { get; set; }
-        public AnimatedVelocityValue<double> Rotation { get; set; }
-        public AnimatedValue<double> Alpha { get; set; }
-        public AnimatedValue<double> Zoom { get; set; }
 
-        public AnimatedValue<string> In { get; set; }
-        public AnimatedValue<string> Out { get; set; }
-
-        public Image(ImageDeserialize deserialized)
+        public Image(string entityKey, ImageDeserialize deserialized) : base(entityKey, deserialized.X, deserialized.Y, deserialized.Rotation, deserialized.Alpha, deserialized.Zoom)
         {
             Content = deserialized.Content;
             Layer = deserialized.Layer;
-            Show = deserialized.Show;
-            Ease = deserialized.Ease;
+            Ease = Easing.GetType(deserialized.Ease);
             Dur = deserialized.Dur;
-            X = deserialized.X;
-            Y = deserialized.Y;
-            Rotation = deserialized.Rotation;
-            Alpha = deserialized.Alpha;
-            Zoom = deserialized.Zoom;
-            In = deserialized.In;
-            Out = deserialized.Out;
+        }
+
+        public void Update(EngineTime time)
+        {
+            
         }
     }
 }

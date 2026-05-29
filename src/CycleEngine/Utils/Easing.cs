@@ -23,50 +23,62 @@ namespace CycleEngine.Utils
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 float s = 1.70158f;
                 return c * (t /= d) * t * ((s + 1) * t - s) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="s">Overshoot amount; higher values overshoot more.</param>
-            public static float In(float t, float b, float c, float d, float s)
+            [Obsolete("Not supported by CES")]
+            public static float In(float t, float b, float e, float d, float s)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (t /= d) * t * ((s + 1) * t - s) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 float s = 1.70158f;
                 return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
             }
             
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="s">Overshoot amount; higher values overshoot more.</param>
-            public static float Out(float t, float b, float c, float d, float s)
+            [Obsolete("Not supported by CES")]
+            public static float Out(float t, float b, float e, float d, float s)
             {
+                // Delta Value
+                float c = e - b;
                 return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 float s = 1.70158f;
                 if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
                 return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
@@ -74,33 +86,40 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="s">Overshoot amount; higher values overshoot more.</param>
-            public static float InOut(float t, float b, float c, float d, float s)
+            [Obsolete("Not supported by CES")]
+            public static float InOut(float t, float b, float e, float d, float s)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
                 return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
             }
         }
 
-        public class Bounce
+        public static class Bounce
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c - Out(d - t, 0, c, d) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d) < (1 / 2.75f))
                 {
                     return c * (7.5625f * t * t) + b;
@@ -120,85 +139,101 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if (t < d / 2) return In(t * 2, 0, c, d) * .5f + b;
                 else return Out(t * 2 - d, 0, c, d) * .5f + c * .5f + b;
             }
         }
 
-        public class Circ
+        public static class Circ
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return -c * ((float)Math.Sqrt(1 - (t /= d) * t) - 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (float)Math.Sqrt(1 - (t = t / d - 1) * t) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return -c / 2 * ((float)Math.Sqrt(1 - t * t) - 1) + b;
                 return c / 2 * ((float)Math.Sqrt(1 - (t -= 2) * t) + 1) + b;
             }
         }
 
-        public class Cubic
+        public static class Cubic
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (t /= d) * t * t + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * ((t = t / d - 1) * t * t + 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
                 return c / 2 * ((t -= 2) * t * t + 2) + b;
             }
         }
 
-        public class Elastic
+        public static class Elastic
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if (t == 0) return b; if ((t /= d) == 1) return b + c;
                 float p = d * .3f;
                 float a = c;
@@ -208,12 +243,15 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="a">Amplitude of the elastic oscillation.</param>
             /// <param name="p">Period of the elastic oscillation.</param>
-            public static float In(float t, float b, float c, float d, float a, float p)
+            [Obsolete("Not supported by CES")]
+            public static float In(float t, float b, float e, float d, float a, float p)
             {
+                // Delta Value
+                float c = e - b;
                 float s;
                 if (t == 0) return b; if ((t /= d) == 1) return b + c;
                 if (a < Math.Abs(c)) { a = c; s = p / 4; }
@@ -223,10 +261,12 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if (t == 0) return b; if ((t /= d) == 1) return b + c;
                 float p = d * .3f;
                 float a = c;
@@ -236,12 +276,15 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="a">Amplitude of the elastic oscillation.</param>
             /// <param name="p">Period of the elastic oscillation.</param>
-            public static float Out(float t, float b, float c, float d, float a, float p)
+            [Obsolete("Not supported by CES")]
+            public static float Out(float t, float b, float e, float d, float a, float p)
             {
+                // Delta Value
+                float c = e - b;
                 float s;
                 if (t == 0) return b; if ((t /= d) == 1) return b + c;
                 if (a < Math.Abs(c)) { a = c; s = p / 4; }
@@ -251,10 +294,12 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if (t == 0) return b; if ((t /= d / 2) == 2) return b + c;
                 float p = d * (.3f * 1.5f);
                 float a = c;
@@ -265,12 +310,15 @@ namespace CycleEngine.Utils
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
             /// <param name="a">Amplitude of the elastic oscillation.</param>
             /// <param name="p">Period of the elastic oscillation.</param>
-            public static float InOut(float t, float b, float c, float d, float a, float p)
+            [Obsolete("Not supported by CES")]
+            public static float InOut(float t, float b, float e, float d, float a, float p)
             {
+                // Delta Value
+                float c = e - b;
                 float s;
                 if (t == 0) return b; if ((t /= d / 2) == 2) return b + c;
                 if (a < Math.Abs(c)) { a = c; s = p / 4; }
@@ -280,32 +328,38 @@ namespace CycleEngine.Utils
             }
         }
 
-        public class Expo
+        public static class Expo
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return (t == 0) ? b : c * (float)Math.Pow(2, 10 * (t / d - 1)) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return (t == d) ? b + c : c * (-(float)Math.Pow(2, -10 * t / d) + 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if (t == 0) return b;
                 if (t == d) return b + c;
                 if ((t /= d / 2) < 1) return c / 2 * (float)Math.Pow(2, 10 * (t - 1)) + b;
@@ -313,171 +367,244 @@ namespace CycleEngine.Utils
             }
         }
 
-        public class Linear
+        public static class Linear
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float None(float t, float b, float c, float d)
+            public static float None(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * t / d + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * t / d + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * t / d + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * t / d + b;
             }
         }
 
-        public class Quad
+        public static class Quad
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (t /= d) * t + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return -c * (t /= d) * (t - 2) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return c / 2 * t * t + b;
                 return -c / 2 * ((--t) * (t - 2) - 1) + b;
             }
         }
 
-        public class Quart
+        public static class Quart
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (t /= d) * t * t * t + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return -c * ((t = t / d - 1) * t * t * t - 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
                 return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
             }
         }
 
-        public class Quint
+        public static class Quint
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (t /= d) * t * t * t * t + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
                 return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
             }
         }
 
-        public class Sine
+        public static class Sine
         {
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float In(float t, float b, float c, float d)
+            public static float In(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return -c * (float)Math.Cos(t / d * (Math.PI / 2)) + c + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float Out(float t, float b, float c, float d)
+            public static float Out(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return c * (float)Math.Sin(t / d * (Math.PI / 2)) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
             /// <param name="b">Beginning value.</param>
-            /// <param name="c">Change between the beginning and destination value.</param>
+            /// <param name="e">Ending value.</param>
             /// <param name="d">Total duration of the tween.</param>
-            public static float InOut(float t, float b, float c, float d)
+            public static float InOut(float t, float b, float e, float d)
             {
+                // Delta Value
+                float c = e - b;
                 return -c / 2 * ((float)Math.Cos(Math.PI * t / d) - 1) + b;
             }
         }
+        
+        private static readonly Dictionary<string, EaseType> Eases = new Dictionary<string, EaseType>
+        {
+            { "linear", EaseType.Linear },
+            { "isine", EaseType.InSine },
+            { "osine", EaseType.OutSine },
+            { "iosine", EaseType.InOutSine },
+            { "iquad", EaseType.InQuad },
+            { "oquad", EaseType.OutQuad },
+            { "ioquad", EaseType.InOutQuad },
+            { "icubic", EaseType.InCubic },
+            { "ocubic", EaseType.OutCubic },
+            { "iocubic", EaseType.InOutCubic },
+            { "iquart", EaseType.InQuart },
+            { "oquart", EaseType.OutQuart },
+            { "ioquart", EaseType.InOutQuart },
+            { "iquint", EaseType.InQuint },
+            { "oquint", EaseType.OutQuint },
+            { "ioquint", EaseType.InOutQuint },
+            { "iexpo", EaseType.InExpo },
+            { "oexpo", EaseType.OutExpo },
+            { "ioexpo", EaseType.InOutExpo },
+            { "icirc", EaseType.InCirc },
+            { "ocirc", EaseType.OutCirc },
+            { "iocirc", EaseType.InOutCirc },
+            { "iback", EaseType.InBack },
+            { "oback", EaseType.OutBack },
+            { "ioback", EaseType.InOutBack },
+            { "ielastic", EaseType.InElastic },
+            { "oelastic", EaseType.OutElastic },
+            { "ioelastic", EaseType.InOutElastic },
+            { "ibounce", EaseType.InBounce },
+            { "obounce", EaseType.OutBounce },
+            { "iobounce", EaseType.InOutBounce }
+        };
+
+        public static EaseType GetType(string key)
+        {
+            return Eases.TryGetValue(key, out EaseType ease) ? ease : EaseType.Undefine;
+        }
     }
     
-    public enum Ease
+    public enum EaseType
     {
+        Linear,
         InSine,
         OutSine,
         InOutSine,
@@ -509,42 +636,5 @@ namespace CycleEngine.Utils
         OutBounce,
         InOutBounce,
         Undefine
-    }
-
-    public static class EaseFunctions
-    {
-        public static readonly Dictionary<string, Ease> Eases = new Dictionary<string, Ease>
-        {
-            { "isine", Ease.InSine },
-            { "osine", Ease.OutSine },
-            { "iosine", Ease.InOutSine },
-            { "iquad", Ease.InQuad },
-            { "oquad", Ease.OutQuad },
-            { "ioquad", Ease.InOutQuad },
-            { "icubic", Ease.InCubic },
-            { "ocubic", Ease.OutCubic },
-            { "iocubic", Ease.InOutCubic },
-            { "iquart", Ease.InQuart },
-            { "oquart", Ease.OutQuart },
-            { "ioquart", Ease.InOutQuart },
-            { "iquint", Ease.InQuint },
-            { "oquint", Ease.OutQuint },
-            { "ioquint", Ease.InOutQuint },
-            { "iexpo", Ease.InExpo },
-            { "oexpo", Ease.OutExpo },
-            { "ioexpo", Ease.InOutExpo },
-            { "icirc", Ease.InCirc },
-            { "ocirc", Ease.OutCirc },
-            { "iocirc", Ease.InOutCirc },
-            { "iback", Ease.InBack },
-            { "oback", Ease.OutBack },
-            { "ioback", Ease.InOutBack },
-            { "ielastic", Ease.InElastic },
-            { "oelastic", Ease.OutElastic },
-            { "ioelastic", Ease.InOutElastic },
-            { "ibounce", Ease.InBounce },
-            { "obounce", Ease.OutBounce },
-            { "iobounce", Ease.InOutBounce }
-        };
     }
 }

@@ -20,7 +20,7 @@ namespace CycleEngine.Core
         
         public Entity? Get(string key)
         {
-            return _entities.TryGetValue(key, out var entity) ? entity : null;
+             return _entities.TryGetValue(key, out var entity) ? entity : null;
         }
 
         public void RegisterSingleton<T>(T entity) where T : Entity

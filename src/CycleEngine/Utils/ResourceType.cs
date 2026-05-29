@@ -18,7 +18,7 @@ namespace CycleEngine.Utils
 
     public static class ResourceRef
     {
-        public static readonly Dictionary<string, ResourceType> Types = new Dictionary<string, ResourceType>()
+        private static readonly Dictionary<string, ResourceType> Types = new Dictionary<string, ResourceType>()
         {
             { "audio", ResourceType.Audio },
             { "background", ResourceType.Background },
@@ -30,5 +30,10 @@ namespace CycleEngine.Utils
             { "dialog", ResourceType.CycleDialogScript },
             { "animation", ResourceType.Animations }
         };
+
+        public static ResourceType GetType(string key)
+        {
+            return Types.TryGetValue(key, out ResourceType type) ? type : ResourceType.Undefine;
+        }
     }
 }

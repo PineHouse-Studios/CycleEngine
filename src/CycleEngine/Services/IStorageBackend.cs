@@ -18,7 +18,7 @@ namespace CycleEngine.Services
     /// slashes '/' as separators, and are case-sensitive.
     /// Examples: "/cycleproject.toml", "/scripts/engine/prologue_00.ces", "/images/paul.png"
     /// </summary>
-    public interface ICycleProjectStorage : IService
+    public interface IStorageBackend : IService
     {
         /// <summary>
         /// Absolute path to the project root. Some backends need this to access
