@@ -1,6 +1,6 @@
 using System;
 
-namespace CycleEngine.Utils
+namespace CycleEngine.Definitions
 {
     public class AnimatedValue<T>
     {

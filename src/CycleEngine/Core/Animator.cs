@@ -31,9 +31,14 @@ namespace CycleEngine.Core
             throw new NotImplementedException();
         }
 
-        public void RegisterTween(Tween<AnimatableEntity> tween)
+        public void RegisterTween(AnimatableEntity targetEntity, AnimatableEntity endingState)
         {
-            ActiveTween.Add(tween);
+            ActiveTween.Add(new Tween<AnimatableEntity>
+            {
+                Begin = AnimatableEntity.Copy(targetEntity),
+                Current = targetEntity,
+                End = endingState
+            });
         }
 
         public void CancelAll()

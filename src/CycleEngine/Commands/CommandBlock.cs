@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CycleEngine.Definitions;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Commands

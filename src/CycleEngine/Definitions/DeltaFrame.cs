@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CycleEngine.Utils
+namespace CycleEngine.Definitions
 {
     public class DeltaFrame
     {

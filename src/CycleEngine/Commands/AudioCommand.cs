@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CycleEngine.Utils;
+using CycleEngine.Definitions;
 
 namespace CycleEngine.Commands
 {

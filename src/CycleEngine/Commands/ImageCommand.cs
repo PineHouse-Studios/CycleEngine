@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CycleEngine.Core;
+using CycleEngine.Definitions;
 using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 

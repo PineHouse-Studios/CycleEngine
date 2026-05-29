@@ -1,4 +1,4 @@
-namespace CycleEngine.Utils
+namespace CycleEngine.Definitions
 {
     public class EngineTime
     {

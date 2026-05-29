@@ -1,3 +1,4 @@
+using CycleEngine.Definitions;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Services
