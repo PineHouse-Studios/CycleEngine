@@ -30,7 +30,7 @@ namespace CycleEngine.Utils
                 // Delta Value
                 float c = e - b;
                 float s = 1.70158f;
-                return c * (t /= d) * t * ((s + 1) * t - s) + b;
+                return t >= d ? e : c * (t /= d) * t * ((s + 1) * t - s) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
@@ -300,7 +300,8 @@ namespace CycleEngine.Utils
             {
                 // Delta Value
                 float c = e - b;
-                if (t == 0) return b; if ((t /= d / 2) == 2) return b + c;
+                if (t == 0) return b; 
+                if ((t /= d / 2) == 2) return b + c;
                 float p = d * (.3f * 1.5f);
                 float a = c;
                 float s = p / 4;
@@ -349,7 +350,7 @@ namespace CycleEngine.Utils
             {
                 // Delta Value
                 float c = e - b;
-                return (t == d) ? b + c : c * (-(float)Math.Pow(2, -10 * t / d) + 1) + b;
+                return c * (-(float)Math.Pow(2, -10 * t / d) + 1) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
@@ -361,7 +362,6 @@ namespace CycleEngine.Utils
                 // Delta Value
                 float c = e - b;
                 if (t == 0) return b;
-                if (t == d) return b + c;
                 if ((t /= d / 2) < 1) return c / 2 * (float)Math.Pow(2, 10 * (t - 1)) + b;
                 return c / 2 * (-(float)Math.Pow(2, -10 * --t) + 2) + b;
             }
@@ -595,6 +595,91 @@ namespace CycleEngine.Utils
             { "obounce", EaseType.OutBounce },
             { "iobounce", EaseType.InOutBounce }
         };
+
+        /// <param name="type">Ease type.</param>
+        /// <param name="t">Current time (or position) of the tween.</param>
+        /// <param name="b">Beginning value.</param>
+        /// <param name="e">Ending value.</param>
+        /// <param name="d">Total duration of the tween.</param>
+        public static float Ease(EaseType type, float t, float b, float e, float d)
+        {
+            if (t >= d) return e;
+            switch (type)
+            {
+                case EaseType.Linear: return Linear.None(t, b, e, d);
+                case EaseType.InSine: return Sine.In(t, b, e, d);
+                case EaseType.OutSine: return Sine.Out(t, b, e, d);
+                case EaseType.InOutSine: return Sine.InOut(t, b, e, d);
+                case EaseType.InQuad: return Quad.In(t, b, e, d);
+                case EaseType.OutQuad: return Quad.Out(t, b, e, d);
+                case EaseType.InOutQuad: return Quad.InOut(t, b, e, d);
+                case EaseType.InCubic: return Cubic.In(t, b, e, d);
+                case EaseType.OutCubic: return Cubic.Out(t, b, e, d);
+                case EaseType.InOutCubic: return Cubic.InOut(t, b, e, d);
+                case EaseType.InQuart: return Quart.In(t, b, e, d);
+                case EaseType.OutQuart: return Quart.Out(t, b, e, d);
+                case EaseType.InOutQuart: return Quart.InOut(t, b, e, d);
+                case EaseType.InQuint: return Quint.In(t, b, e, d);
+                case EaseType.OutQuint: return Quint.Out(t, b, e, d);
+                case EaseType.InOutQuint: return Quint.InOut(t, b, e, d);
+                case EaseType.InExpo: return Expo.In(t, b, e, d);
+                case EaseType.OutExpo: return Expo.Out(t, b, e, d);
+                case EaseType.InOutExpo: return Expo.InOut(t, b, e, d);
+                case EaseType.InCirc: return Circ.In(t, b, e, d);
+                case EaseType.OutCirc: return Circ.Out(t, b, e, d);
+                case EaseType.InOutCirc: return Circ.InOut(t, b, e, d);
+                case EaseType.InBack: return Back.In(t, b, e, d);
+                case EaseType.OutBack: return Back.Out(t, b, e, d);
+                case EaseType.InOutBack: return Back.InOut(t, b, e, d);
+                case EaseType.InElastic: return Elastic.In(t, b, e, d);
+                case EaseType.OutElastic: return Elastic.Out(t, b, e, d);
+                case EaseType.InOutElastic: return Elastic.InOut(t, b, e, d);
+                case EaseType.InBounce: return Bounce.In(t, b, e, d);
+                case EaseType.OutBounce: return Bounce.Out(t, b, e, d);
+                case EaseType.InOutBounce: return Bounce.InOut(t, b, e, d);
+            }
+
+            return float.NaN;
+        }
+        
+        /// <param name="type">Ease type. This method is only available for ease elastic</param>
+        /// <param name="t">Current time (or position) of the tween.</param>
+        /// <param name="b">Beginning value.</param>
+        /// <param name="e">Ending value.</param>
+        /// <param name="d">Total duration of the tween.</param>
+        /// <param name="a">Amplitude of the elastic oscillation.</param>
+        /// <param name="p">Period of the elastic oscillation.</param>
+        public static float Ease(EaseType type, float t, float b, float e, float d, float a, float p)
+        {
+            if (t >= d) return e;
+            switch (type)
+            {
+                case EaseType.InElastic: return Elastic.In(t, b, e, d, a, p);
+                case EaseType.OutElastic: return Elastic.Out(t, b, e, d, a, p);
+                case EaseType.InOutElastic: return Elastic.InOut(t, b, e, d, a, p);
+            }
+
+            return float.NaN;
+        }
+        
+        /// <param name="type">Ease type. This method is only available for ease back</param>
+        /// <param name="t">Current time (or position) of the tween.</param>
+        /// <param name="b">Beginning value.</param>
+        /// <param name="e">Ending value.</param>
+        /// <param name="d">Total duration of the tween.</param>
+        /// <param name="s">Overshoot amount; higher values overshoot more.</param>
+        public static float Ease(EaseType type, float t, float b, float e, float d, float s)
+        {
+            if (t >= d) return e;
+            switch (type)
+            {
+                case EaseType.InBack: return Back.In(t, b, e, d, s);
+                case EaseType.OutBack: return Back.Out(t, b, e, d, s);
+                case EaseType.InOutBack: return Back.InOut(t, b, e, d, s);
+            }
+
+            return float.NaN;
+        }
 
         public static EaseType GetType(string key)
         {

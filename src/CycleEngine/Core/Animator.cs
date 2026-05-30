@@ -22,7 +22,6 @@ namespace CycleEngine.Core
         {
             foreach (var e in ActiveTween)
             {
-                
             }
         }
 
