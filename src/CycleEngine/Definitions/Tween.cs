@@ -5,5 +5,6 @@ namespace CycleEngine.Definitions
         public T Begin = default!;
         public T Current = default!;
         public T End = default!;
+        public double TimeElapsed = 0;
     }
 }
