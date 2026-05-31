@@ -30,7 +30,7 @@ namespace CycleEngine.Utils
                 // Delta Value
                 double c = e - b;
                 double s = 1.70158;
-                return t >= d ? e : c * (t /= d) * t * ((s + 1) * t - s) + b;
+                return c * (t /= d) * t * ((s + 1) * t - s) + b;
             }
 
             /// <param name="t">Current time (or position) of the tween.</param>
