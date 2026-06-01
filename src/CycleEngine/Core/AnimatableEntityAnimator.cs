@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CycleEngine.Definitions;
 using CycleEngine.Entities;
 using CycleEngine.Utils;

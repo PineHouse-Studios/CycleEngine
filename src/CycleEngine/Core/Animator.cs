@@ -18,6 +18,26 @@ namespace CycleEngine.Core
             return frame;
         }
 
+        public bool ActiveContains(string entityKey)
+        {
+            foreach (var e in ActiveTween)
+            {
+                if (e.Current.EntityKey.Equals(entityKey)) return true;
+            }
+
+            return false;
+        }
+
+        public bool PausedContains(string entityKey)
+        {
+            foreach (var e in PausedTween)
+            {
+                if (e.Current.EntityKey.Equals(entityKey)) return true;
+            }
+
+            return false;
+        }
+
         public void Register(T targetEntity, T endingState)
         {
             ActiveTween.Add(new Tween<T>
