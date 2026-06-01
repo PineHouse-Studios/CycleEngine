@@ -20,16 +20,16 @@ namespace CycleEngine.Entities
         public AnimatedValue<double> Alpha { get; set; }
         public AnimatedValue<double> Zoom { get; set; }
 
-        public static AnimatableEntity Copy(AnimatableEntity animatableEntity)
+        public override Entity Copy()
         {
             return new AnimatableEntity(
-                animatableEntity.EntityKey, 
-                AnimatedValue<double>.Copy(animatableEntity.X),
-                AnimatedValue<double>.Copy(animatableEntity.Y),
-                AnimatedValue<double>.Copy(animatableEntity.Rotation),
-                AnimatedValue<double>.Copy(animatableEntity.Alpha),
-                AnimatedValue<double>.Copy(animatableEntity.Zoom)
-                );
+                EntityKey, 
+                AnimatedValue<double>.Copy(X),
+                AnimatedValue<double>.Copy(Y),
+                AnimatedValue<double>.Copy(Rotation),
+                AnimatedValue<double>.Copy(Alpha),
+                AnimatedValue<double>.Copy(Zoom)
+            );
         }
     }
 }

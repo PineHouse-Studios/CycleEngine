@@ -26,5 +26,10 @@ namespace CycleEngine.Entities
         {
             
         }
+
+        public override Entity Copy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

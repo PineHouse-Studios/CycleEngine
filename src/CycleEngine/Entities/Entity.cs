@@ -10,5 +10,7 @@ namespace CycleEngine.Entities
         {
             EntityKey = entityKey;
         }
+
+        public abstract Entity Copy();
     }
 }

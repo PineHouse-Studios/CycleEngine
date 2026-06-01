@@ -3,34 +3,34 @@ using CycleEngine.Entities;
 
 namespace CycleEngine.Definitions
 {
-    public class DeltaFrame
+    public class DeltaFrame<T> where T : Entity
     {
         /// <summary>
         /// Copies of new values for entity that changed during the frame.
         /// </summary>
-        public List<AnimatableEntity> EntityChanges { get; private set; }
+        public List<T> EntityChanges { get; private set; }
 
         public DeltaFrame()
         {
-            EntityChanges = new List<AnimatableEntity>();
+            EntityChanges = new List<T>();
         }
 
-        public DeltaFrame(List<AnimatableEntity> changes)
+        public DeltaFrame(List<T> changes)
         {
-            EntityChanges = new List<AnimatableEntity>(changes);
+            EntityChanges = new List<T>(changes);
         }
 
-        internal void AppendChange(AnimatableEntity entity)
+        internal void Update(T entity)
         {
             for (int i = 0; i < EntityChanges.Count; i++)
             {
                 if (EntityChanges[i].EntityKey.Equals(entity.EntityKey))
                 {
-                    EntityChanges[i] = AnimatableEntity.Copy(entity);
+                    EntityChanges[i] = (T) entity.Copy();
                     return;
                 }
             }
-            EntityChanges.Add(AnimatableEntity.Copy(entity));
+            EntityChanges.Add((T) entity.Copy());
         }
         
         public bool IsEmpty => EntityChanges.Count == 0;

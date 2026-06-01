@@ -1,4 +1,5 @@
 using CycleEngine.Definitions;
+using CycleEngine.Entities;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Services
@@ -15,11 +16,11 @@ namespace CycleEngine.Services
         /// <summary>
         /// Destroy an entity
         /// </summary>
-        void DestroyEntity(string entityId); 
-        
+        void DestroyEntity(string entityId);
+
         /// <summary>
         /// Update and render states of entities
         /// </summary>
-        void ApplyFrame(DeltaFrame delta);
+        void ApplyFrame(DeltaFrame<Entity> delta);
     }
 }

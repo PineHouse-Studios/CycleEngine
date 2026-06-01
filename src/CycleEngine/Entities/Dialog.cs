@@ -18,5 +18,9 @@ namespace CycleEngine.Entities
         public string? Title { set; get; }
         public string? Text { set; get; }
         public string[]? Option { set; get; }
+        public override Entity Copy()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

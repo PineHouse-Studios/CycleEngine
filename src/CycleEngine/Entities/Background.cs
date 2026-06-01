@@ -7,5 +7,10 @@ namespace CycleEngine.Entities
         public Background(string entityKey) : base(entityKey)
         {
         }
+
+        public override Entity Copy()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

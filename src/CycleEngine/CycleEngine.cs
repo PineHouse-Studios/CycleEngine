@@ -16,7 +16,7 @@ namespace CycleEngine
         public ResourceManager Resources { get; }
         public GameConfig Config { get; }
         public EngineTime Time { get; }
-        public Animator Animator { get; }
+        public AnimatableEntityAnimator AnimatableEntityAnimator { get; }
         private ScriptExecutor _executor;
 
         protected CycleEngine(ServiceManager services, ResourceManager resources)
@@ -26,7 +26,7 @@ namespace CycleEngine
             Resources = resources;
             Config = new GameConfig();
             Time = new EngineTime();
-            Animator = new Animator(this);
+            AnimatableEntityAnimator = new AnimatableEntityAnimator();
 
             _executor = new ScriptExecutor(this);
         }

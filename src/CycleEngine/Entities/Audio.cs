@@ -7,5 +7,10 @@ namespace CycleEngine.Entities
         public Audio(string entityKey) : base(entityKey)
         {
         }
+
+        public override Entity Copy()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
