@@ -23,7 +23,8 @@ namespace CycleEngine.Interpreter
                 { "else", "endelse" },
                 { "repeat", "endrepeat" },
                 { "define", "enddefine" },
-                { "switch", "endswitch" }
+                { "switch", "endswitch" },
+                { "case", "endcase" }
             };
 
         public CycleEngineScriptParser(string source)
@@ -130,7 +131,7 @@ namespace CycleEngine.Interpreter
         //  Block filler
         //
         //  Fills `block` with commands and nested named sub-blocks until
-        //  this block's stopper appears.  Behaviour depends on what
+        //  this block's stopper appears.  Behavior depends on what
         //  opened the block:
         //
         //    OpenerKind.Begin  - opened by [begin name]; closes on the
@@ -290,7 +291,7 @@ namespace CycleEngine.Interpreter
         //  If @name is a block-opening command, recursively read body until
         //  the matching @end... command and return a CommandBlock.
         // ------------------------------------------------------------------
-        private Command ParseCommandOrBlock()
+        private Command? ParseCommandOrBlock()
         {
             int cmdStart = _pos;
             if (_source[_pos] != '@')
@@ -344,23 +345,7 @@ namespace CycleEngine.Interpreter
                         {
                             // Consume the rest of that line (no parameters expected, but be safe).
                             SkipToNextLine();
-                            switch (paramList[0].Value)
-                            {
-                                case "choice":
-                                    return new ChoiceCommand(paramList, bodyCommands.ToArray());
-                                case "if":
-                                    return new IfCommand(paramList, bodyCommands.ToArray());
-                                case "elseif":
-                                    return new ElseIfCommand(paramList, bodyCommands.ToArray());
-                                case "else":
-                                    return new ElseCommand(paramList, bodyCommands.ToArray());
-                                case "repeat":
-                                    return new RepeatCommand(paramList, bodyCommands.ToArray());
-                                case "define":
-                                    throw new NotImplementedException();
-                                case "switch":
-                                    return new SwitchCommand(paramList, bodyCommands.ToArray());
-                            }
+                            return CommandBuilder.Build(paramList, bodyCommands.ToArray());
                         }
 
                         // Not the terminator - rewind and parse normally.
@@ -384,47 +369,7 @@ namespace CycleEngine.Interpreter
                 }
             }
 
-            switch (paramList[0].Value)
-            {
-                case "audio":
-                    return new AudioCommand(parameters);
-                case "bg":
-                    return new BackgroundCommand(parameters);
-                case "camera":
-                    return new CameraCommand(parameters);
-                case "case":
-                    return new CaseCommand(parameters);
-                case "define":
-                    throw new NotImplementedException();
-                case "dialog":
-                    return new DialogCommand(parameters);
-                case "function":
-                    return new FunctionCommand(parameters);
-                case "image":
-                    return new ImageCommand(parameters);
-                case "jump":
-                    return new JumpCommand(parameters);
-                case "loadscene":
-                    return new LoadSceneCommand(parameters);
-                case "loadscript":
-                    return new LoadScriptCommand(parameters);
-                case "music":
-                    return new MusicCommand(parameters);
-                case "quit":
-                    return new QuitCommand(parameters);
-                case "text":
-                    return new TextCommand(parameters);
-                case "ui":
-                    return new UserInterfaceCommand(parameters);
-                case "var":
-                    return new VarCommand(parameters);
-                case "video":
-                    return new VideoCommand(parameters);
-                case "wait":
-                    return new WaitCommand(parameters);
-            }
-
-            throw new CycleCommandException($"Unknown Command: {paramList[0].Value}");
+            return CommandBuilder.Build(paramList);
         }
 
         // ------------------------------------------------------------------

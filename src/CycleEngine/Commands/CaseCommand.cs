@@ -5,9 +5,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class CaseCommand : Command
+    public class CaseCommand : CommandBlock
     {
-        public CaseCommand(List<Token> parameters) : base(parameters)
+        public CaseCommand(List<Token> parameters, Command[] body) : base(parameters, body)
         {
         }
 

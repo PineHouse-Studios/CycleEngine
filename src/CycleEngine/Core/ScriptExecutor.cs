@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using CycleEngine.Commands;
 using CycleEngine.Definitions;
 using CycleEngine.Interpreter;
 using CycleEngine.Services;
@@ -28,7 +30,34 @@ namespace CycleEngine.Core
 
         public async void Run()
         {
+            if (_currentScript is null) return;
+            if (_currentScript.Attributes.TryGetValue("title", out string title))
+            {
+                _engine.Services.Get<ISystemBackend>().UpdateWindowTitle(title);
+            }
+            RunCommands(_currentScript.Body["script"].NamedBlocks["onload"].Commands);
+        }
+
+        private void RunBlock(ScriptBlock block)
+        {
             
+        }
+
+        
+        private async Task RunCommands(Command[] commands)
+        {
+            for (int line = 0; line < commands.Length; line++)
+            {
+                if (commands[line] is WaitCommand)
+                {
+                    await commands[line].AsyncExecute();
+                }
+                else
+                {
+                    commands[line].AsyncExecute();
+                }
+                
+            }
         }
     }
 }
