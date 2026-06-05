@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class RepeatCommand : CommandBlock
     {
-        public RepeatCommand(List<Token> parameters, Command[] body) : base(parameters, body)
+        public RepeatCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
         {
         }
 

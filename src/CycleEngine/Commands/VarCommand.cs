@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class VarCommand : Command
     {
-        public VarCommand(List<Token> parameters) : base(parameters)
+        public VarCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
         }
 

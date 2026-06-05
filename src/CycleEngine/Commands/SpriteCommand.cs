@@ -6,7 +6,7 @@ namespace CycleEngine.Commands
 {
     public class SpriteCommand : Command
     {
-        public SpriteCommand(List<Token> parameters) : base(parameters)
+        public SpriteCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
         }
 

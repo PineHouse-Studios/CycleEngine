@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class JumpCommand : Command
     {
-        public JumpCommand(List<Token> parameters) : base(parameters)
+        public JumpCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
         }
 

@@ -10,7 +10,7 @@ namespace CycleEngine.Commands
 {
     public class ImageCommand : Command
     {
-        public ImageCommand(List<Token> parameters) : base(parameters)
+        public ImageCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
             Operation = Parameter[1].Value;
             EntityKey = Parameter[2].Value;

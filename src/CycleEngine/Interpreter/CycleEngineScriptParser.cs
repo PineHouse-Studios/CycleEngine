@@ -26,12 +26,16 @@ namespace CycleEngine.Interpreter
                 { "switch", "endswitch" },
                 { "case", "endcase" }
             };
-
+        
         public CycleEngineScriptParser(string source)
         {
             _source = source.ToLower() ?? throw new ArgumentNullException(nameof(source));
             _pos = 0;
         }
+
+        #region Parser V1
+
+        /*
 
         public static CycleEngineScript Parse(string source)
         {
@@ -769,6 +773,23 @@ namespace CycleEngine.Interpreter
             // Consume \r, \n, or \r\n.
             if (_pos < _source.Length && _source[_pos] == '\r') _pos++;
             if (_pos < _source.Length && _source[_pos] == '\n') _pos++;
+        }*/
+        
+        #endregion
+
+        #region Parser V2
+
+        public static CycleEngineScript Parse(string source)
+        {
+            string raw = source.ToLower() ?? throw new ArgumentNullException(nameof(source));
+            int pos = 0;
+            int curLine = 0;
+            int curLinePos = 0;
+
+
+            return null;
         }
+
+        #endregion
     }
 }

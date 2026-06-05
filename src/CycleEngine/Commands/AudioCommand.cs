@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class AudioCommand : Command
     {
-        public AudioCommand(List<Token> parameters) : base(parameters)
+        public AudioCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
             
         }

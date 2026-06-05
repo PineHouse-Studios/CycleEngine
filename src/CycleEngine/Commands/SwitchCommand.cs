@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class SwitchCommand : CommandBlock
     {
-        public SwitchCommand(List<Token> parameters, Command[] body) : base(parameters, body)
+        public SwitchCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
         {
         }
 

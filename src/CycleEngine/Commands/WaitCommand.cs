@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class WaitCommand : Command
     {
-        public WaitCommand(List<Token> parameters) : base(parameters)
+        public WaitCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
         }
 

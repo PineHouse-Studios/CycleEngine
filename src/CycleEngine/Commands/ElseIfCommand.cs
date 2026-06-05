@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class ElseIfCommand : CommandBlock
     {
-        public ElseIfCommand(List<Token> parameters, Command[] body) : base(parameters, body)
+        public ElseIfCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
         {
         }
 

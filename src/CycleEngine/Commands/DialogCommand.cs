@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class DialogCommand : Command
     {
-        public DialogCommand(List<Token> parameters) : base(parameters)
+        public DialogCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
         {
         }
 

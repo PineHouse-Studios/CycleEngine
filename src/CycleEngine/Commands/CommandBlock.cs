@@ -6,7 +6,7 @@ namespace CycleEngine.Commands
 {
     public abstract class CommandBlock : Command
     {
-        protected CommandBlock(List<Token> parameters, Command[] body) : base(parameters)
+        protected CommandBlock(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, lineNumber)
         {
             Body = body;
         }

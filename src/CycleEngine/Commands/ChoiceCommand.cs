@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class ChoiceCommand : CommandBlock
     {
-        public ChoiceCommand(List<Token> parameters, Command[] body) : base(parameters, body)
+        public ChoiceCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
         {
         }
 

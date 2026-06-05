@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class CaseCommand : CommandBlock
     {
-        public CaseCommand(List<Token> parameters, Command[] body) : base(parameters, body)
+        public CaseCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
         {
         }
 
