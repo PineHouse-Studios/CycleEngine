@@ -1,11 +1,16 @@
 using CycleEngine.Definitions;
 using CycleEngine.Entities;
+using CycleEngine.Services;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Core
 {
-    public class AnimatableEntityAnimator : Animator<AnimatableEntity>
+    public class AnimatableEntityAnimator : Animator<AnimatableEntity>, IService
     {
+        public AnimatableEntityAnimator(CycleEngine engine) : base(engine)
+        {
+        }
+
         internal override void Update(EngineTime time)
         {
             for (int i = 0; i < ActiveTween.Count; i++)

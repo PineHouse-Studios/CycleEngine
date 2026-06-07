@@ -6,9 +6,16 @@ namespace CycleEngine.Core
 {
     public abstract class Animator<T> where T : Entity
     {
+        private CycleEngine _engine;
         internal DeltaFrame<T> CurFrame = new DeltaFrame<T>();
         internal readonly List<Tween<T>> ActiveTween = new List<Tween<T>>();
         internal readonly List<Tween<T>> PausedTween = new List<Tween<T>>();
+
+        public Animator(CycleEngine engine)
+        {
+            _engine = engine;
+        }
+        
         internal abstract void Update(EngineTime time);
 
         public DeltaFrame<T> CollectFrame()

@@ -1,6 +1,8 @@
+using CycleEngine.Services;
+
 namespace CycleEngine.Definitions
 {
-    public class GameConfig
+    public class GameConfig : IService
     {
         
     }

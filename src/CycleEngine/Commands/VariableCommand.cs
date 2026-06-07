@@ -5,9 +5,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class VarCommand : Command
+    public class VariableCommand : Command
     {
-        public VarCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public VariableCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

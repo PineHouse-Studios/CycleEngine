@@ -11,8 +11,10 @@ namespace CycleEngine.Commands
 {
     public abstract class Command : ICommand
     {
-        public Command(List<Token> parameters, int lineNumber)
+        protected CycleEngine _engine;
+        public Command(CycleEngine engine, List<Token> parameters, int lineNumber)
         {
+            _engine = engine;
             Parameter = parameters;
         }
         
@@ -25,69 +27,69 @@ namespace CycleEngine.Commands
 
     public class CommandBuilder
     {
-        public static Command? Build(List<Token> parameters, int lineNumber)
+        public static Command? Build(CycleEngine engine, List<Token> parameters, int lineNumber)
         {
             switch (parameters[0].Value)
             {
                 case "audio":
-                    return new AudioCommand(parameters, lineNumber);
+                    return new AudioCommand(engine, parameters, lineNumber);
                 case "bg":
-                    return new BackgroundCommand(parameters, lineNumber);
+                    return new BackgroundCommand(engine, parameters, lineNumber);
                 case "camera":
-                    return new CameraCommand(parameters, lineNumber);
+                    return new CameraCommand(engine, parameters, lineNumber);
                 case "define":
                     throw new NotImplementedException();
                 case "dialog":
-                    return new DialogCommand(parameters, lineNumber);
+                    return new DialogCommand(engine, parameters, lineNumber);
                 case "function":
-                    return new FunctionCommand(parameters, lineNumber);
+                    return new FunctionCommand(engine, parameters, lineNumber);
                 case "image":
-                    return new ImageCommand(parameters, lineNumber);
+                    return new ImageCommand(engine, parameters, lineNumber);
                 case "jump":
-                    return new JumpCommand(parameters, lineNumber);
+                    return new JumpCommand(engine, parameters, lineNumber);
                 case "loadscene":
-                    return new LoadSceneCommand(parameters, lineNumber);
+                    return new LoadSceneCommand(engine, parameters, lineNumber);
                 case "loadscript":
-                    return new LoadScriptCommand(parameters, lineNumber);
+                    return new LoadScriptCommand(engine, parameters, lineNumber);
                 case "music":
-                    return new MusicCommand(parameters, lineNumber);
+                    return new MusicCommand(engine, parameters, lineNumber);
                 case "quit":
-                    return new QuitCommand(parameters, lineNumber);
+                    return new QuitCommand(engine, parameters, lineNumber);
                 case "text":
-                    return new TextCommand(parameters, lineNumber);
+                    return new TextCommand(engine, parameters, lineNumber);
                 case "ui":
-                    return new UserInterfaceCommand(parameters, lineNumber);
+                    return new UserInterfaceCommand(engine, parameters, lineNumber);
                 case "var":
-                    return new VarCommand(parameters, lineNumber);
+                    return new VariableCommand(engine, parameters, lineNumber);
                 case "video":
-                    return new VideoCommand(parameters, lineNumber);
+                    return new VideoCommand(engine, parameters, lineNumber);
                 case "wait":
-                    return new WaitCommand(parameters, lineNumber);
+                    return new WaitCommand(engine, parameters, lineNumber);
             }
 
             return null;
         }
 
-        public static CommandBlock? Build(List<Token> parameters, Command[] body, int lineNumber)
+        public static CommandBlock? Build(CycleEngine engine, List<Token> parameters, Command[] body, int lineNumber)
         {
             switch (parameters[0].Value)
             {
                 case "choice":
-                    return new ChoiceCommand(parameters, body.ToArray(), lineNumber);
+                    return new ChoiceCommand(engine, parameters, lineNumber, body);
                 case "if":
-                    return new IfCommand(parameters, body.ToArray(), lineNumber);
+                    return new IfCommand(engine, parameters, lineNumber, body);
                 case "elseif":
-                    return new ElseIfCommand(parameters, body.ToArray(), lineNumber);
+                    return new ElseIfCommand(engine, parameters, lineNumber, body);
                 case "else":
-                    return new ElseCommand(parameters, body.ToArray(), lineNumber);
+                    return new ElseCommand(engine, parameters, lineNumber, body);
                 case "repeat":
-                    return new RepeatCommand(parameters, body.ToArray(), lineNumber);
+                    return new RepeatCommand(engine, parameters, lineNumber, body);
                 case "define":
                     throw new NotImplementedException();
                 case "switch":
-                    return new SwitchCommand(parameters, body.ToArray(), lineNumber);
+                    return new SwitchCommand(engine, parameters, lineNumber, body);
                 case "case":
-                    return new CaseCommand(parameters, body.ToArray(), lineNumber);
+                    return new CaseCommand(engine, parameters, lineNumber, body);
             }
 
             return null;

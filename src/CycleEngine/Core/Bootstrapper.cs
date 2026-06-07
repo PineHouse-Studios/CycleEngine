@@ -15,7 +15,7 @@ namespace CycleEngine.Core
         
         private sealed class CycleEngineImpl : CycleEngine
         {
-            public CycleEngineImpl(ServiceManager services, ResourceManager resources) : base(services, resources) { }
+            public CycleEngineImpl(Dictionary<Type, IService> services, ResourceManager resources) : base(services, resources) { }
         }
         
         /// <summary>
@@ -57,7 +57,7 @@ namespace CycleEngine.Core
             DeserializeResourceIndex(projectConfig.Assets.Background);
             DeserializeResourceIndex(projectConfig.Assets.Save);
             
-            return new CycleEngineImpl(new ServiceManager(_services), _resourceManager);
+            return new CycleEngineImpl(_services, _resourceManager);
         }
 
         private void DeserializeResourceIndex(string indexPath)

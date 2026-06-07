@@ -7,7 +7,7 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Core
 {
-    public class ScriptExecutor
+    public class ScriptExecutor : IService
     {
         private CycleEngineScript? _currentScript;
         private readonly CycleEngine _engine;
@@ -56,7 +56,6 @@ namespace CycleEngine.Core
                 {
                     commands[line].AsyncExecute();
                 }
-                
             }
         }
     }

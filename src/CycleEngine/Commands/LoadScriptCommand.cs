@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class LoadScriptCommand : Command
     {
-        public LoadScriptCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public LoadScriptCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

@@ -10,15 +10,10 @@ namespace CycleEngine.Commands
 {
     public class ImageCommand : Command
     {
-        public ImageCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public ImageCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
-            Operation = Parameter[1].Value;
-            EntityKey = Parameter[2].Value;
-            
-            for (int i = 1; i < Parameter.Count; i++)
-            {
-                // 
-            }
+            Operation = parameters[1].Value;
+            EntityKey = parameters[2].Value;
         }
 
         public string Operation { get; private set; }

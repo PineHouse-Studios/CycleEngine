@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class ElseCommand : CommandBlock
     {
-        public ElseCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
+        public ElseCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body) : base(engine, parameters, lineNumber, body)
         {
         }
 

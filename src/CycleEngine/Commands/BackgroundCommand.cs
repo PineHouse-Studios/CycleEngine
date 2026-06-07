@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class BackgroundCommand : Command
     {
-        public BackgroundCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public BackgroundCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

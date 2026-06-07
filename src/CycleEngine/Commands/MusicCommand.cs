@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class MusicCommand : Command
     {
-        public MusicCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public MusicCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

@@ -1,6 +1,8 @@
+using CycleEngine.Services;
+
 namespace CycleEngine.Definitions
 {
-    public class EngineTime
+    public class EngineTime : IService
     {
         /// <summary>
         /// Total milliseconds since the engine started.

@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class CameraCommand : Command
     {
-        public CameraCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public CameraCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

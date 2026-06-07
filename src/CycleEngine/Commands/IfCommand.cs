@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class IfCommand : CommandBlock
     {
-        public IfCommand(List<Token> parameters, Command[] body, int lineNumber) : base(parameters, body, lineNumber)
+        public IfCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body) : base(engine, parameters, lineNumber, body)
         {
         }
 

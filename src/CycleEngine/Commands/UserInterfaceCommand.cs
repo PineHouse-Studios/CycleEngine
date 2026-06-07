@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class UserInterfaceCommand : Command
     {
-        public UserInterfaceCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public UserInterfaceCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

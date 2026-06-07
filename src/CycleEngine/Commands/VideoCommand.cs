@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class VideoCommand : Command
     {
-        public VideoCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public VideoCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

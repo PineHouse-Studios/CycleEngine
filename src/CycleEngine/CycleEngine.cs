@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using CycleEngine.Core;
 using CycleEngine.Definitions;
+using CycleEngine.Services;
 using CycleEngine.Utils;
 
 namespace CycleEngine
@@ -14,26 +17,31 @@ namespace CycleEngine
         public ServiceManager Services { get; }
         public EntityManager Entities { get; }
         public ResourceManager Resources { get; }
-        public GameConfig Config { get; }
-        public EngineTime Time { get; }
-        public AnimatableEntityAnimator AnimatableEntityAnimator { get; }
-        private ScriptExecutor _executor;
+        private EngineTime _time;
 
-        protected CycleEngine(ServiceManager services, ResourceManager resources)
+        protected CycleEngine(Dictionary<Type, IService> services, ResourceManager resources)
         {
-            Services = services;
             Entities = new EntityManager();
             Resources = resources;
-            Config = new GameConfig();
-            Time = new EngineTime();
-            AnimatableEntityAnimator = new AnimatableEntityAnimator();
 
-            _executor = new ScriptExecutor(this);
+            Dictionary<Type, IService> active = new Dictionary<Type, IService>();
+            foreach (var type in services)
+            {
+                active[type.Key] = type.Value;
+            }
+
+            active[typeof(GameConfig)] = new GameConfig();
+            _time = new EngineTime();
+            active[typeof(EngineTime)] = _time;
+            active[typeof(AnimatableEntityAnimator)] = new AnimatableEntityAnimator(this);
+            active[typeof(ScriptExecutor)] = new ScriptExecutor(this);
+
+            Services = new ServiceManager(active);
         }
 
         public void NewGame()
         {
-            _executor.LoadScript("init");
+            Services.Get<ScriptExecutor>().LoadScript("init");
         }
 
         public void SaveCurrentGame()
@@ -57,7 +65,7 @@ namespace CycleEngine
         /// </summary>
         public void Update(double deltaMs)
         {
-            Time.Advance(deltaMs);
+            _time.Advance(deltaMs);
         }
         
     }

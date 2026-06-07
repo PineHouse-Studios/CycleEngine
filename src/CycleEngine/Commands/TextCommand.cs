@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class TextCommand : Command
     {
-        public TextCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public TextCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 

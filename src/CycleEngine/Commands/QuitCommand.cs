@@ -7,7 +7,7 @@ namespace CycleEngine.Commands
 {
     public class QuitCommand : Command
     {
-        public QuitCommand(List<Token> parameters, int lineNumber) : base(parameters, lineNumber)
+        public QuitCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
         {
         }
 
