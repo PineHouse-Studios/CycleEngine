@@ -34,35 +34,46 @@ namespace CycleEngine.Core
             _services[type] = instance;
             return this;
         }
-        
-        private T GetService<T>() where T : IService
-        {
-            var type = typeof(T);
-            if (_services.TryGetValue(type, out var instance)) {
-                return (T)instance;
-            }
-
-            throw new CycleServiceNotFoundException(nameof(T));
-        }
 
         public CycleEngine Build()
         {
-            var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(GetService<IStorageBackend>().ReadText("/cycleproject.toml"));
-            if (projectConfig is null) throw new CycleResourceNotFoundException("cycleproject.toml");
-            DeserializeResourceIndex(projectConfig.Assets.Audio);
-            DeserializeResourceIndex(projectConfig.Assets.Image);
-            DeserializeResourceIndex(projectConfig.Assets.Music);
-            DeserializeResourceIndex(projectConfig.Assets.Script);
-            DeserializeResourceIndex(projectConfig.Assets.Video);
-            DeserializeResourceIndex(projectConfig.Assets.Background);
-            DeserializeResourceIndex(projectConfig.Assets.Save);
+            IStorageBackend storage;
+            if(_services.TryGetValue(typeof(IStorageBackend), out var service))
+            {
+                storage = (IStorageBackend) service;
+            }
+            else
+            {
+                throw new CycleServiceNotFoundException("Storage");
+            }
+
+            string? raw = storage.ReadText("/cycleproject.toml");
+            if (raw is null)
+            {
+                throw new CycleFileNotFoundException("/cycleproject.toml");
+            }
+            var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(raw);
+            if (projectConfig is null) throw new CycleSyntaxException("cycleproject.toml");
+            DeserializeResourceIndex(projectConfig.Assets.Audio, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Image, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Music, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Script, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Video, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Background, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Save, storage);
             
             return new CycleEngineImpl(_services, _resourceManager);
         }
 
-        private void DeserializeResourceIndex(string indexPath)
+        private void DeserializeResourceIndex(string indexPath, IStorageBackend storageBackend)
         {
-            var doc = TomlSerializer.Deserialize<TomlTable>(GetService<IStorageBackend>().ReadText(indexPath));
+            string? raw = storageBackend.ReadText(indexPath);
+            if (raw is null)
+            {
+                throw new CycleFileNotFoundException(indexPath);
+            }
+            var doc = TomlSerializer.Deserialize<TomlTable>(raw);
+            if (doc is null) throw new CycleSyntaxException(indexPath);
         
             foreach (var (categoryName, categoryValue) in doc)
             {
@@ -70,13 +81,13 @@ namespace CycleEngine.Core
                 {
                     continue;
                 }
-                TomlTable categoryTable = (TomlTable)categoryValue;
+                TomlTable categoryTable = (TomlTable) categoryValue;
                 
                 foreach (var (key, value) in categoryTable)
                 {
                     ResourceType resourceType = ResourceRef.GetType(categoryName);
                     if (resourceType == ResourceType.Undefine)
-                        throw new CycleAttributeValueTypeMismatchException("Resource Type", categoryName);
+                        throw new CycleTypeMismatchException("Resource Type", categoryName);
                     
                     if (value is string path)
                     {

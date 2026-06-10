@@ -17,7 +17,7 @@ namespace CycleEngine.Utils
     public class CycleSyntaxException : CycleEngineException
     {
         public CycleSyntaxException(string details) 
-            : base($"Failed to interpret syntax: {details}") 
+            : base($"Failed to interpret: {details}") 
         { }
     }
     
@@ -29,6 +29,16 @@ namespace CycleEngine.Utils
     public class CycleCommandException : CycleEngineException
     {
         public CycleCommandException(string details) : base(details)
+        { }
+    }
+    
+    /// <summary>
+    /// The engine cannot found the file that it were asked to.
+    /// </summary>
+    public class CycleFileNotFoundException : CycleEngineException
+    {
+        public CycleFileNotFoundException(string path) 
+            : base($"Cannot find file: {path}") 
         { }
     }
 
@@ -59,10 +69,10 @@ namespace CycleEngine.Utils
     /// <summary>
     /// The value provided to the key of the attribute does not match the type that the key requires.
     /// </summary>
-    public class CycleAttributeValueTypeMismatchException : CycleEngineException
+    public class CycleTypeMismatchException : CycleEngineException
     {
-        public CycleAttributeValueTypeMismatchException(string key, string value) 
-            : base($"The value ({value}) of the attribute do not match with it's key ({key})")
+        public CycleTypeMismatchException(string key, string value) 
+            : base($"The value ({value}) of the attribute do not match with it's type ({key})")
         { }
     }
 }
