@@ -561,7 +561,7 @@ namespace CycleEngine.Utils
             }
         }
         
-        private static readonly Dictionary<string, EaseType> Eases = new Dictionary<string, EaseType>
+        private static readonly Dictionary<string, EaseType> EaseNames = new Dictionary<string, EaseType>
         {
             { "linear", EaseType.Linear },
             { "isine", EaseType.InSine },
@@ -639,7 +639,7 @@ namespace CycleEngine.Utils
                 case EaseType.InOutBounce: return Bounce.InOut(t, b, e, d);
             }
 
-            return float.NaN;
+            return double.NaN;
         }
         
         /// <param name="type">Ease type. This method is only available for ease elastic</param>
@@ -659,7 +659,7 @@ namespace CycleEngine.Utils
                 case EaseType.InOutElastic: return Elastic.InOut(t, b, e, d, a, p);
             }
 
-            return float.NaN;
+            return double.NaN;
         }
         
         /// <param name="type">Ease type. This method is only available for ease back</param>
@@ -678,12 +678,12 @@ namespace CycleEngine.Utils
                 case EaseType.InOutBack: return Back.InOut(t, b, e, d, s);
             }
 
-            return float.NaN;
+            return double.NaN;
         }
 
         public static EaseType GetType(string key)
         {
-            return Eases.TryGetValue(key, out EaseType ease) ? ease : EaseType.Undefine;
+            return EaseNames.TryGetValue(key, out EaseType ease) ? ease : EaseType.Undefine;
         }
     }
     

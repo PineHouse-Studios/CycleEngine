@@ -22,7 +22,7 @@ title = "Prologue"
 @image update bob content=bob.smile x=0 dur=1000 ease=oquart
 @audio play $sys.lang$_bob_0000_1_2
 @dialog [0000:1:2]
-@wait sys.lang ?? {"zh"= 50, "jp"= 100}
+@wait sys.lang :: {"zh"= 50, "jp"= 100}
 @image update alice content:alice.bored
 
 [0000:1:3]
