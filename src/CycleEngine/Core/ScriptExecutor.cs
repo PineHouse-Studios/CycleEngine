@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using CycleEngine.Commands;
 using CycleEngine.Definitions;
@@ -24,8 +25,32 @@ namespace CycleEngine.Core
             
             string? scriptRaw = _engine.Services.Get<IStorageBackend>().ReadText(scriptPath);
             if (scriptRaw is null) throw new CycleResourceNotFoundException($"key -> {key}, path -> {scriptPath}");
+
+            try
+            {
+                _currentScript = CycleEngineScriptParser.Parse(scriptRaw);
+            }
+            catch (Exception e)
+            {
+                if (e is CycleUnexpectedTokenException)
+                {
+                    CycleUnexpectedTokenException exception = (CycleUnexpectedTokenException)e;
+                    exception.CommandSource = key;
+
+                    throw new CycleUnexpectedTokenException(exception,
+                        $"Unexpected token \"{exception.Token}\" at {exception.CommandSource} {exception.LineCount}:{exception.PosInLineCount}");
+                }
+                
+                if (e is CycleExpectedTokenException)
+                {
+                    CycleExpectedTokenException exception = (CycleExpectedTokenException)e;
+                    exception.CommandSource = key;
+
+                    throw new CycleExpectedTokenException(exception,
+                        $"Expects token \"{exception.Token}\" at {exception.CommandSource} line {exception.LineCount}");
+                }
+            }
             
-            _currentScript = CycleEngineScriptParser.Parse(scriptRaw);
         }
 
         public async void Run()

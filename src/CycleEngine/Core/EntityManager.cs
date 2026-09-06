@@ -31,17 +31,15 @@ namespace CycleEngine.Core
 
         public T? GetSingleton<T>() where T : Entity
         {
-            var type = typeof(T);
-            if (_singletons.TryGetValue(type, out var instance)) {
-                return (T)instance;
-            }
-
-            return null;
+            return _singletons.TryGetValue(typeof(T), out var instance)
+                ? instance as T
+                : null;
         }
         
         public void Clear()
         {
             _entities.Clear();
+            _singletons.Clear();
         }
     }
 }

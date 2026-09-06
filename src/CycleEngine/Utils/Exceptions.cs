@@ -75,4 +75,53 @@ namespace CycleEngine.Utils
             : base($"The value ({value}) of the attribute do not match with it's type ({key})")
         { }
     }
+
+    public class CycleUnexpectedTokenException : CycleCommandException
+    {
+        public int LineCount;
+        public int PosInLineCount;
+        public string Token;
+        public string CommandSource;
+
+        public CycleUnexpectedTokenException(int posInLineCount, string token)
+            : base("")
+        {
+            LineCount = -1;
+            PosInLineCount = posInLineCount;
+            Token = token;
+            CommandSource = String.Empty;
+        }
+
+        public CycleUnexpectedTokenException(CycleUnexpectedTokenException e, string message)
+            : base(message)
+        {
+            LineCount = e.LineCount;
+            PosInLineCount = e.PosInLineCount;
+            Token = e.Token;
+            CommandSource = e.CommandSource;
+        }
+    }
+    
+    public class CycleExpectedTokenException : CycleCommandException
+    {
+        public int LineCount;
+        public string Token;
+        public string CommandSource;
+
+        public CycleExpectedTokenException(string token)
+            : base("")
+        {
+            LineCount = -1;
+            Token = token;
+            CommandSource = String.Empty;
+        }
+
+        public CycleExpectedTokenException(CycleExpectedTokenException e, string message)
+            : base(message)
+        {
+            LineCount = e.LineCount;
+            Token = e.Token;
+            CommandSource = e.CommandSource;
+        }
+    }
 }

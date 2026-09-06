@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CycleEngine.Definitions;
+using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Commands

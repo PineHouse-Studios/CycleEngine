@@ -7,7 +7,6 @@ using CycleEngine.Utils;
 
 namespace CycleEngine
 {
-    
     /// <summary>
     /// Cycle Engine Instance.
     /// Please use <see cref="Bootstrapper"/> to initialize the instance
@@ -66,6 +65,7 @@ namespace CycleEngine
         public void Update(double deltaMs)
         {
             _time.Advance(deltaMs);
+            Services.Get<AnimatableEntityAnimator>().Update(_time);
         }
         
     }

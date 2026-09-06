@@ -16,7 +16,13 @@ namespace CycleEngine.Core
         
         public void RegisterPath(ResourceType type, string key, string absolutePath)
         {
-            _resources[type][key] = absolutePath;
+            if (!_resources.TryGetValue(type, out var entries))
+            {
+                entries = new Dictionary<string, string>();
+                _resources[type] = entries;
+            }
+
+            entries[key] = absolutePath;
         }
 
         public string? GetPath(ResourceType type, string key)

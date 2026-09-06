@@ -1,16 +1,18 @@
 namespace CycleEngine.Interpreter
 {
-    public class Token
+    public struct Token
     {
-        
+        public TokenType Type { get; set; }
+        public string Value { get; set; }
+        public int StartIndex { get; set; }
     }
 
     public enum TokenType
     {
-        Directive, Identifier, SectionCode,
-        Question, Comma, DoubleColon, Colon, LBrace, RBrace, LBracket, RBracket, DollarOpen, DollarClose,
+        Directive, Identifier, SectionOrArray,
+        Question, DoubleQuestion, Comma, DoubleColon, Colon, LBrace, RBrace, LParentheses, RParentheses, DollarIdentifier,
         String, Number,
-        Equals, Operator, Compare, 
-        EOF
+        Assign, Operator, Compare, 
+        EndOfLine
     }
 }

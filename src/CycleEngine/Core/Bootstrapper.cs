@@ -54,13 +54,13 @@ namespace CycleEngine.Core
             }
             var projectConfig = TomlSerializer.Deserialize<ProjectConfig>(raw);
             if (projectConfig is null) throw new CycleSyntaxException("cycleproject.toml");
-            DeserializeResourceIndex(projectConfig.Assets.Audio, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Image, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Music, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Script, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Video, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Background, storage);
-            DeserializeResourceIndex(projectConfig.Assets.Save, storage);
+            DeserializeResourceIndex(projectConfig.Assets.Audio + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Image + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Music + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Script + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Video + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Background + "/index.toml", storage);
+            DeserializeResourceIndex(projectConfig.Assets.Save + "/index.toml", storage);
             
             return new CycleEngineImpl(_services, _resourceManager);
         }
