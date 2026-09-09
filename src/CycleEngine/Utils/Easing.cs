@@ -561,7 +561,7 @@ namespace CycleEngine.Utils
             }
         }
         
-        private static readonly Dictionary<string, EaseType> EaseNames = new Dictionary<string, EaseType>
+        private static readonly Dictionary<string, EaseType> EaseNames = new()
         {
             { "linear", EaseType.Linear },
             { "isine", EaseType.InSine },

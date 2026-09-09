@@ -20,22 +20,22 @@ namespace CycleEngine
 
         protected CycleEngine(Dictionary<Type, IService> services, ResourceManager resources)
         {
-            Entities = new EntityManager();
+            Entities = new();
             Resources = resources;
 
-            Dictionary<Type, IService> active = new Dictionary<Type, IService>();
+            Dictionary<Type, IService> active = new();
             foreach (var type in services)
             {
                 active[type.Key] = type.Value;
             }
 
             active[typeof(GameConfig)] = new GameConfig();
-            _time = new EngineTime();
+            _time = new();
             active[typeof(EngineTime)] = _time;
             active[typeof(AnimatableEntityAnimator)] = new AnimatableEntityAnimator(this);
             active[typeof(ScriptExecutor)] = new ScriptExecutor(this);
 
-            Services = new ServiceManager(active);
+            Services = new(active);
         }
 
         public void NewGame()

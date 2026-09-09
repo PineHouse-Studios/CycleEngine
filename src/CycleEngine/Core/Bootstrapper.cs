@@ -10,13 +10,11 @@ namespace CycleEngine.Core
 {
     public class Bootstrapper
     {
-        private readonly Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
-        private readonly ResourceManager _resourceManager = new ResourceManager();
+        private readonly Dictionary<Type, IService> _services = new();
+        private readonly ResourceManager _resourceManager = new();
         
-        private sealed class CycleEngineImpl : CycleEngine
-        {
-            public CycleEngineImpl(Dictionary<Type, IService> services, ResourceManager resources) : base(services, resources) { }
-        }
+        private sealed class CycleEngineImpl(Dictionary<Type, IService> services, ResourceManager resources)
+            : CycleEngine(services, resources) { }
         
         /// <summary>
         /// Registers a service instance. All services should be registered during initialization of the engine instance by bootstrapper. <br/>
@@ -77,11 +75,10 @@ namespace CycleEngine.Core
         
             foreach (var (categoryName, categoryValue) in doc)
             {
-                if (!(categoryValue is TomlTable))
+                if (categoryValue is not TomlTable categoryTable)
                 {
                     continue;
                 }
-                TomlTable categoryTable = (TomlTable) categoryValue;
                 
                 foreach (var (key, value) in categoryTable)
                 {

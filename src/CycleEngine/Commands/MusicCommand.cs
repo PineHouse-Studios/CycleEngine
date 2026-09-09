@@ -6,12 +6,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class MusicCommand : Command
+    public class MusicCommand(CycleEngine engine, List<Token> parameters, int lineNumber)
+        : Command(engine, parameters, lineNumber)
     {
-        public MusicCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

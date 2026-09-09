@@ -10,7 +10,7 @@ namespace CycleEngine.Definitions
 
         public static AnimatedValue<T> Copy(AnimatedValue<T> av)
         {
-            return new AnimatedValue<T>
+            return new()
             {
                 Duration = av.Duration,
                 Value = av.Value,
@@ -27,7 +27,7 @@ namespace CycleEngine.Definitions
         
         public static AnimatedVelocityValue<T> Copy(AnimatedVelocityValue<T> avv)
         {
-            return new AnimatedVelocityValue<T>
+            return new()
             {
                 Duration = avv.Duration,
                 Value = avv.Value,

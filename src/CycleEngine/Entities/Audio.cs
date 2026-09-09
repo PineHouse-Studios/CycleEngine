@@ -2,12 +2,9 @@ using CycleEngine.Definitions;
 
 namespace CycleEngine.Entities
 {
-    public class Audio : Entity
+    public class Audio(string entityKey)
+        : Entity(entityKey)
     {
-        public Audio(string entityKey) : base(entityKey)
-        {
-        }
-
         public override Entity Copy()
         {
             throw new System.NotImplementedException();

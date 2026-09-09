@@ -7,9 +7,9 @@ namespace CycleEngine.Core
     public abstract class Animator<T> where T : Entity
     {
         private CycleEngine _engine;
-        internal DeltaFrame<T> CurFrame = new DeltaFrame<T>();
-        internal readonly List<Tween<T>> ActiveTween = new List<Tween<T>>();
-        internal readonly List<Tween<T>> PausedTween = new List<Tween<T>>();
+        internal DeltaFrame<T> CurFrame = new();
+        internal readonly List<Tween<T>> ActiveTween = new();
+        internal readonly List<Tween<T>> PausedTween = new();
 
         public Animator(CycleEngine engine)
         {
@@ -20,8 +20,8 @@ namespace CycleEngine.Core
 
         public DeltaFrame<T> CollectFrame()
         {
-            DeltaFrame<T> frame = new DeltaFrame<T>(CurFrame.EntityChanges);
-            CurFrame = new DeltaFrame<T>();
+            DeltaFrame<T> frame = new(CurFrame.EntityChanges);
+            CurFrame = new();
             return frame;
         }
 
@@ -47,7 +47,7 @@ namespace CycleEngine.Core
 
         public void Register(T targetEntity, T endingState)
         {
-            ActiveTween.Add(new Tween<T>
+            ActiveTween.Add(new()
             {
                 Begin = (T) targetEntity.Copy(),
                 Current = targetEntity,

@@ -13,10 +13,10 @@ namespace CycleEngine.Definitions.Manifest
         public string Ease { get; set; } = String.Empty;
         public double Dur { get; set; }
         
-        public AnimatedValue<double> X { get; set; } = new AnimatedValue<double>();
-        public AnimatedValue<double> Y { get; set; } = new AnimatedValue<double>();
-        public AnimatedValue<double> Rotation { get; set; } = new AnimatedValue<double>();
-        public AnimatedValue<double> Alpha { get; set; } = new AnimatedValue<double> { Value = 100 };
-        public AnimatedValue<double> Zoom { get; set; } = new AnimatedValue<double> { Value = 100 };
+        public AnimatedValue<double> X { get; set; } = new();
+        public AnimatedValue<double> Y { get; set; } = new();
+        public AnimatedValue<double> Rotation { get; set; } = new();
+        public AnimatedValue<double> Alpha { get; set; } = new() { Value = 100 };
+        public AnimatedValue<double> Zoom { get; set; } = new() { Value = 100 };
     }
 }

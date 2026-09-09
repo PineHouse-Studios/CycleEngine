@@ -5,12 +5,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Core
 {
-    public class AnimatableEntityAnimator : Animator<AnimatableEntity>, IService
+    public class AnimatableEntityAnimator(CycleEngine engine)
+        : Animator<AnimatableEntity>(engine), IService
     {
-        public AnimatableEntityAnimator(CycleEngine engine) : base(engine)
-        {
-        }
-
         internal override void Update(EngineTime time)
         {
             for (int i = 0; i < ActiveTween.Count; i++)

@@ -6,12 +6,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class QuitCommand : Command
+    public class QuitCommand(CycleEngine engine, List<Token> parameters, int lineNumber)
+        : Command(engine, parameters, lineNumber)
     {
-        public QuitCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

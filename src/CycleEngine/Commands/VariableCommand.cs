@@ -6,12 +6,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class VariableCommand : Command
+    public class VariableCommand(CycleEngine engine, List<Token> parameters, int lineNumber)
+        : Command(engine, parameters, lineNumber)
     {
-        public VariableCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

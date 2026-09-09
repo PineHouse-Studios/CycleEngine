@@ -12,12 +12,12 @@ namespace CycleEngine.Definitions
 
         public DeltaFrame()
         {
-            EntityChanges = new List<T>();
+            EntityChanges = new();
         }
 
         public DeltaFrame(List<T> changes)
         {
-            EntityChanges = new List<T>(changes);
+            EntityChanges = new(changes);
         }
 
         internal void Update(T entity)

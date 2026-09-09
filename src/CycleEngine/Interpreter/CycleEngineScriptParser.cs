@@ -15,7 +15,7 @@ namespace CycleEngine.Interpreter
         // Block commands that have a paired @end... terminator.
         // Add more pairs here as the language grows.
         private static readonly Dictionary<string, string> BlockCommandPairs =
-            new Dictionary<string, string>(StringComparer.Ordinal)
+            new(StringComparer.Ordinal)
             {
                 { "choice", "endchoice" },
                 { "if", "endif" },
@@ -107,7 +107,7 @@ namespace CycleEngine.Interpreter
         
         public static List<Token> Tokenize(string line)
         {
-            List<Token> tokens = new List<Token>();
+            List<Token> tokens = new();
             int pos = 0;
 
             for (; pos < line.Length; pos++)
@@ -150,7 +150,7 @@ namespace CycleEngine.Interpreter
                         peekCount++;
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Directive,
@@ -192,7 +192,7 @@ namespace CycleEngine.Interpreter
 
                     if (found)
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.SectionOrArray,
@@ -219,7 +219,7 @@ namespace CycleEngine.Interpreter
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Comma,
@@ -239,7 +239,7 @@ namespace CycleEngine.Interpreter
 
                     if (Peek() == '?')
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.DoubleQuestion,
@@ -250,7 +250,7 @@ namespace CycleEngine.Interpreter
                         continue;
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Question,
@@ -270,7 +270,7 @@ namespace CycleEngine.Interpreter
 
                     if (Peek() == ':')
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.DoubleColon,
@@ -281,7 +281,7 @@ namespace CycleEngine.Interpreter
                         continue;
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Colon,
@@ -315,7 +315,7 @@ namespace CycleEngine.Interpreter
 
                     if (found)
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.String,
@@ -339,7 +339,7 @@ namespace CycleEngine.Interpreter
 
                     if (Peek() == '=')
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.Compare,
@@ -350,7 +350,7 @@ namespace CycleEngine.Interpreter
                         continue;
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Assign,
@@ -361,7 +361,7 @@ namespace CycleEngine.Interpreter
                 }
 
                 // > >= < <=
-                if (cur == '>' || cur == '<')
+                if (cur is '>' or '<')
                 {
                     if (tokens.Count == 0)
                     {
@@ -370,7 +370,7 @@ namespace CycleEngine.Interpreter
 
                     if (Peek() == '=')
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.Compare,
@@ -381,7 +381,7 @@ namespace CycleEngine.Interpreter
                         continue;
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Compare,
@@ -392,14 +392,14 @@ namespace CycleEngine.Interpreter
                 }
 
                 // Operators
-                if (cur == '+' || cur == '-' || cur == '*' || cur == '/')
+                if (cur is '+' or '-' or '*' or '/')
                 {
                     if (tokens.Count == 0)
                     {
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.Operator,
@@ -417,7 +417,7 @@ namespace CycleEngine.Interpreter
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.LParentheses,
@@ -434,7 +434,7 @@ namespace CycleEngine.Interpreter
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.RParentheses,
@@ -452,7 +452,7 @@ namespace CycleEngine.Interpreter
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.LBrace,
@@ -469,7 +469,7 @@ namespace CycleEngine.Interpreter
                         throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
                     }
 
-                    tokens.Add(new Token
+                    tokens.Add(new()
                     {
                         StartIndex = pos,
                         Type = TokenType.RBrace,
@@ -528,7 +528,7 @@ namespace CycleEngine.Interpreter
 
                     if (!isIdentifier)
                     {
-                        tokens.Add(new Token
+                        tokens.Add(new()
                         {
                             StartIndex = pos,
                             Type = TokenType.Number,
@@ -579,7 +579,7 @@ namespace CycleEngine.Interpreter
                     throw new CycleExpectedTokenException("$");
                 }
 
-                tokens.Add(new Token
+                tokens.Add(new()
                 {
                     StartIndex = pos,
                     Type = dollarCount >= 2
@@ -591,7 +591,7 @@ namespace CycleEngine.Interpreter
                 pos += idPeekCount - 1;
             }
 
-            tokens.Add(new Token
+            tokens.Add(new()
             {
                 StartIndex = pos,
                 Type = TokenType.EndOfLine,
@@ -601,45 +601,17 @@ namespace CycleEngine.Interpreter
             return tokens;
 
 
-            bool IsNumber(char cur)
-            {
-                return cur >= '0' && cur <= '9';
-            }
+            static bool IsNumber(char cur) => cur is >= '0' and <= '9';
 
-            bool IsIllegalNameCharacter(char cur)
-            {
-                return !(
-                    (cur >= 'a' && cur <= 'z') ||
-                    (cur >= 'A' && cur <= 'Z') ||
-                    (cur >= '0' && cur <= '9') ||
-                    cur == '_' ||
-                    cur == '.' ||
-                    cur == '$'
-                );
-            }
+            static bool IsIllegalNameCharacter(char cur) => cur is not (
+                >= 'a' and <= 'z' or
+                >= 'A' and <= 'Z' or
+                >= '0' and <= '9' or
+                '_' or '.' or '$');
 
-            bool IsTokenBoundary(char cur)
-            {
-                return cur == ' ' ||
-                       cur == '=' ||
-                       cur == '>' ||
-                       cur == '<' ||
-                       cur == '+' ||
-                       cur == '-' ||
-                       cur == '*' ||
-                       cur == '/' ||
-                       cur == '(' ||
-                       cur == ')' ||
-                       cur == '{' ||
-                       cur == '}' ||
-                       cur == '[' ||
-                       cur == ']' ||
-                       cur == ',' ||
-                       cur == '?' ||
-                       cur == ':' ||
-                       cur == '"' ||
-                       cur == '@';
-            }
+            static bool IsTokenBoundary(char cur) => cur is
+                ' ' or '=' or '>' or '<' or '+' or '-' or '*' or '/' or
+                '(' or ')' or '{' or '}' or '[' or ']' or ',' or '?' or ':' or '"' or '@';
 
             char Peek()
             {

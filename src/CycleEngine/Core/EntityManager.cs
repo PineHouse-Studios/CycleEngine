@@ -10,8 +10,8 @@ namespace CycleEngine.Core
     /// </summary>
     public class EntityManager
     {
-        private readonly Dictionary<string, Entity> _entities = new Dictionary<string, Entity>();
-        private readonly Dictionary<Type, Entity> _singletons = new Dictionary<Type, Entity>();
+        private readonly Dictionary<string, Entity> _entities = new();
+        private readonly Dictionary<Type, Entity> _singletons = new();
         
         public void Register(string key, Entity entity)
         {

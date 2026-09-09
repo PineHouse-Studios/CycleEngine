@@ -2,12 +2,9 @@ using CycleEngine.Definitions;
 
 namespace CycleEngine.Entities
 {
-    public class Background : Entity
+    public class Background(string entityKey)
+        : Entity(entityKey)
     {
-        public Background(string entityKey) : base(entityKey)
-        {
-        }
-
         public override Entity Copy()
         {
             throw new System.NotImplementedException();

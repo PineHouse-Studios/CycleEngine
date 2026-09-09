@@ -5,12 +5,9 @@ using CycleEngine.Interpreter;
 
 namespace CycleEngine.Commands
 {
-    public class SpriteCommand : Command
+    public class SpriteCommand(CycleEngine engine, List<Token> parameters, int lineNumber)
+        : Command(engine, parameters, lineNumber)
     {
-        public SpriteCommand(CycleEngine engine, List<Token> parameters, int lineNumber) : base(engine, parameters, lineNumber)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

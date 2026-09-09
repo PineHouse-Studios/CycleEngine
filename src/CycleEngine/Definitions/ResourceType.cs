@@ -18,7 +18,7 @@ namespace CycleEngine.Definitions
 
     public static class ResourceRef
     {
-        private static readonly Dictionary<string, ResourceType> Types = new Dictionary<string, ResourceType>()
+        private static readonly Dictionary<string, ResourceType> Types = new()
         {
             { "audio", ResourceType.Audio },
             { "background", ResourceType.Background },

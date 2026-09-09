@@ -12,13 +12,13 @@ namespace CycleEngine.Core
     public class ResourceManager
     {
         private readonly Dictionary<ResourceType, Dictionary<string, string>> _resources =
-            new Dictionary<ResourceType, Dictionary<string, string>>();
+            new();
         
         public void RegisterPath(ResourceType type, string key, string absolutePath)
         {
             if (!_resources.TryGetValue(type, out var entries))
             {
-                entries = new Dictionary<string, string>();
+                entries = new();
                 _resources[type] = entries;
             }
 

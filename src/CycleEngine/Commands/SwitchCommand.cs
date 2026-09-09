@@ -6,12 +6,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class SwitchCommand : CommandBlock
+    public class SwitchCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body)
+        : CommandBlock(engine, parameters, lineNumber, body)
     {
-        public SwitchCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body) : base(engine, parameters, lineNumber, body)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

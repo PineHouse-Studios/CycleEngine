@@ -6,12 +6,9 @@ using CycleEngine.Utils;
 
 namespace CycleEngine.Commands
 {
-    public class RepeatCommand : CommandBlock
+    public class RepeatCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body)
+        : CommandBlock(engine, parameters, lineNumber, body)
     {
-        public RepeatCommand(CycleEngine engine, List<Token> parameters, int lineNumber, Command[] body) : base(engine, parameters, lineNumber, body)
-        {
-        }
-
         public override Task AsyncExecute()
         {
             throw new System.NotImplementedException();

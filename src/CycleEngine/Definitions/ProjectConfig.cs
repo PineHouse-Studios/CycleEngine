@@ -2,7 +2,7 @@ namespace CycleEngine.Definitions
 {
     public class ProjectConfig
     {
-        public AssetsFolderConfig Assets { get; set; } = new AssetsFolderConfig();
+        public AssetsFolderConfig Assets { get; set; } = new();
     }
 
     public class AssetsFolderConfig
