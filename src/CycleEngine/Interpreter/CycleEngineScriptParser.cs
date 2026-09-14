@@ -87,8 +87,6 @@ namespace CycleEngine.Interpreter
                     
                 }
 
-
-
                 Token Peek()
                 {
                     return cur[linePos + 1];
@@ -99,8 +97,6 @@ namespace CycleEngine.Interpreter
             {
                 return tokens[curLine + 1];
             }
-            
-            
 
             return null;
         }
@@ -118,6 +114,12 @@ namespace CycleEngine.Interpreter
                 if (Char.IsWhiteSpace(cur))
                 {
                     continue;
+                }
+                
+                // Comment
+                if (cur == '#')
+                {
+                    break;
                 }
 
                 // Directive
@@ -214,11 +216,6 @@ namespace CycleEngine.Interpreter
                 // Comma
                 if (cur == ',')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
@@ -232,11 +229,6 @@ namespace CycleEngine.Interpreter
                 // Question
                 if (cur == '?')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     if (Peek() == '?')
                     {
                         tokens.Add(new()
@@ -263,11 +255,6 @@ namespace CycleEngine.Interpreter
                 // Colon
                 if (cur == ':')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     if (Peek() == ':')
                     {
                         tokens.Add(new()
@@ -332,11 +319,6 @@ namespace CycleEngine.Interpreter
                 // = / ==
                 if (cur == '=')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     if (Peek() == '=')
                     {
                         tokens.Add(new()
@@ -363,11 +345,6 @@ namespace CycleEngine.Interpreter
                 // > >= < <=
                 if (cur is '>' or '<')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     if (Peek() == '=')
                     {
                         tokens.Add(new()
@@ -394,11 +371,6 @@ namespace CycleEngine.Interpreter
                 // Operators
                 if (cur is '+' or '-' or '*' or '/')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
@@ -412,11 +384,6 @@ namespace CycleEngine.Interpreter
                 // Parentheses
                 if (cur == '(')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
@@ -429,11 +396,6 @@ namespace CycleEngine.Interpreter
 
                 if (cur == ')')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
@@ -447,11 +409,6 @@ namespace CycleEngine.Interpreter
                 // Braces
                 if (cur == '{')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
@@ -464,11 +421,6 @@ namespace CycleEngine.Interpreter
 
                 if (cur == '}')
                 {
-                    if (tokens.Count == 0)
-                    {
-                        throw new CycleUnexpectedTokenException(pos + 1, cur.ToString());
-                    }
-
                     tokens.Add(new()
                     {
                         StartIndex = pos,
