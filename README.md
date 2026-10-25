@@ -20,3 +20,9 @@ Cycle is engine-agnostic: it handles resource management, story logic, and anima
 ### Bootstrapper
 
 ### Script Executor
+
+### C# Chapters and Source Generator
+
+The C# script layer uses `[CycleChapter]` and `[CycleEvent]` with an incremental
+source generator. See [the generator guide](docs/source-generator.md) for setup,
+automatic event registration, partial-file ordering, and build checks.

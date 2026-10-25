@@ -1,0 +1,4 @@
+[sprite]
+name.en = "Bob"
+image.default = 
+image.smile = "bob.smile"

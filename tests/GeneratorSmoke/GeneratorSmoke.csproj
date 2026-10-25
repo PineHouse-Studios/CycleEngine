@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Compile the actual script layer while the legacy interpreter migration is incomplete. -->
+    <Compile Include="../../src/CycleEngine/Script/**/*.cs" LinkBase="Script" />
+    <ProjectReference Include="../../CycleEngine.Generators/CycleEngine.Generators.csproj"
+                      OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+</Project>

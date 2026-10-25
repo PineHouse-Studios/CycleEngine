@@ -1,0 +1,88 @@
+@image
+Action: create
+    Params: 
+    - content: key
+    - x: double
+    - y: double
+    - rotation: double
+    - zoom: double
+    - alpha: double
+    - layer: int
+
+    Flags:
+    - show
+    - hide
+
+Action: update
+    Params:
+    - content: key
+    - x: double
+    - y: double
+    - rotation: double
+    - zoom: double
+    - alpha: double
+    - layer: int
+
+    Flags:
+    - show
+    - hide
+
+Action: move
+    Params:
+    - x: double
+        - x.ease: key
+        - x.duration: double
+        - x.velocity: double
+            - x.velocity.ease: key
+            - x.velocity.duration: double
+            - x.velocity.time: double
+    - y: double
+        - y.ease: key
+        - y.duration: double
+        - y.velocity: double
+            - y.velocity.ease: key
+            - y.velocity.duration: double
+            - y.velocity.time: double
+    - rotation: double
+        - rotation.ease: key
+        - rotation.duration: double
+        - rotation.velocity: double
+            - rotation.velocity.ease: key
+            - rotation.velocity.duration: double
+            - rotation.velocity.time: double
+    - zoom: double
+        - zoom.ease: key
+        - zoom.duration: double
+        - zoom.velocity: double
+            - zoom.velocity.ease: key
+            - zoom.velocity.duration: double
+            - zoom.velocity.time: double
+    - alpha: double
+        - alpha.ease: key
+        - alpha.duration: double
+        - alpha.velocity: double
+            - alpha.velocity.ease: key
+            - alpha.velocity.duration: double
+            - alpha.velocity.time: double
+
+Action: show
+    Params:
+    - animation: key
+    - duration: double
+
+Action: hide
+    Params:
+    - animation: key
+    - duration: double
+
+Action: switch
+    Params:
+    - content: key
+    - animation: key
+    - duration: double
+
+Action: remove
+
+Action: animate
+    Params:
+    - preset: key

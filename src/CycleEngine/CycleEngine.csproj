@@ -8,10 +8,8 @@
 
     <ItemGroup>
       <PackageReference Include="Tomlyn" Version="2.3.2" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Animaton\" />
+      <ProjectReference Include="../../CycleEngine.Generators/CycleEngine.Generators.csproj"
+                        OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
 </Project>

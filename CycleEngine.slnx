@@ -1,4 +1,7 @@
 <Solution>
-  <Project Path="CDSLanguageServer/CDSLanguageServer.csproj" />
+  <Project Path="CycleEngine.Generators/CycleEngine.Generators.csproj" />
   <Project Path="src/CycleEngine/CycleEngine.csproj" />
+  <Project Path="tests/GeneratorSmoke/GeneratorSmoke.csproj" />
+  <Project Path="tests/GeneratorChecks/GeneratorChecks.csproj" />
+  <Project Path="tests/LocaleChecks/LocaleChecks.csproj" />
 </Solution>

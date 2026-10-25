@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CycleEngine.Animation;
 using CycleEngine.Core;
 using CycleEngine.Definitions;
 using CycleEngine.Services;
-using CycleEngine.Utils;
 
 namespace CycleEngine
 {
@@ -33,14 +33,12 @@ namespace CycleEngine
             _time = new();
             active[typeof(EngineTime)] = _time;
             active[typeof(AnimatableEntityAnimator)] = new AnimatableEntityAnimator(this);
-            active[typeof(ScriptExecutor)] = new ScriptExecutor(this);
 
             Services = new(active);
         }
 
         public void NewGame()
         {
-            Services.Get<ScriptExecutor>().LoadScript("init");
         }
 
         public void SaveCurrentGame()

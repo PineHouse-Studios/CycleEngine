@@ -1,7 +1,6 @@
 using System;
 using CycleEngine.Definitions;
 using CycleEngine.Definitions.Manifest;
-using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Entities

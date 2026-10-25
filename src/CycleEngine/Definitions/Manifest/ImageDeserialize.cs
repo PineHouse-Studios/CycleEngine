@@ -1,5 +1,4 @@
 using System;
-using CycleEngine.Interpreter;
 using CycleEngine.Utils;
 
 namespace CycleEngine.Definitions.Manifest

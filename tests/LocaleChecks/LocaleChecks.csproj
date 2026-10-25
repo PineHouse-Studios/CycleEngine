@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net9.0</TargetFrameworks>
+    <OutputType Condition="'$(TargetFramework)' == 'net9.0'">Exe</OutputType>
+    <LangVersion>12.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Validate the real locale sources independently of the unfinished legacy interpreter migration. -->
+    <Compile Include="../../src/CycleEngine/Core/LocaleManager.cs" Link="Runtime/LocaleManager.cs" />
+    <Compile Include="../../src/CycleEngine/Core/CdsParser.cs" Link="Runtime/CdsParser.cs" />
+    <Compile Include="../../src/CycleEngine/Definitions/CycleText.cs" Link="Runtime/CycleText.cs" />
+    <Compile Include="../../src/CycleEngine/Services/IStorageBackend.cs" Link="Runtime/IStorageBackend.cs" />
+    <Compile Include="../../src/CycleEngine/Services/IService.cs" Link="Runtime/IService.cs" />
+    <Compile Include="../../src/CycleEngine/Utils/Exceptions.cs" Link="Runtime/Exceptions.cs" />
+    <Compile Remove="Program.cs" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <None Include="../../SampleCycleEngineProject/scripts/dialog/prologue_00_zh.cds"
+          Link="sample.cds" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

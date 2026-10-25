@@ -1,5 +1,5 @@
 [engine]
-init = "/scripts/initialization.ces"
+init = "/scripts/init.ces"
 0000 = "/scripts/engine/prologue_00.ces"
 1001 = "/scripts/engine/common_route_01.ces"
 

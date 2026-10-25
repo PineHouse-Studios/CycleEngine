@@ -40,11 +40,13 @@ title = "Prologue"
 
     [0000:1:8] 
     @choice
-    @option [0000:1:8][1]
-    @var 变量+=1
+        @option [0000:1:8][1]
+            @var 变量+=1
+        @endoption
 
-    @option [0000:1:8][2]
-    @var 变量-=1
+        @option [0000:1:8][2]
+            @var 变量-=1
+        @endoption
     @endchoice
 
     [0000:1:9]
